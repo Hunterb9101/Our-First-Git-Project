@@ -24,4 +24,42 @@ public class Registry {
 		new Weapon("enchanted sword", 16, 121);
 		new Weapon("Mythical sword", 18, 162);
 	}
+	
+	//Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable)
+	public static void registerMonsters(){
+		new Monster("Zombie", 1, 4, 2, 5, 1);
+		new Monster("Wolf", 1, 3, 3, 6, 1);
+		
+		new Monster("Goblin", 2, 6, 3, 7, 2);
+		new Monster("Goblin", 2, 5, 4, 5, 2);
+		
+		new Monster("Skeleton", 4, 9, 5, 8, 3);
+		new Monster("Dwarf", 2, 5, 4, 5, 3);
+		new Monster("Mermaid", 3, 5, 2, 7, 3);
+		
+		new Monster("Vampire", 4, 15, 9, 11, 4);
+		new Monster("T-Rex", 4, 15, 9, 11, 4);
+		new Monster("Ogre", 4, 15, 9, 11, 4);
+		
+		new Monster("Troll", 4, 15, 9, 12, 5);
+		new Monster("Orc", 5, 15, 12, 9, 5);
+		
+		new Monster("Cyclops", 7, 15, 9, 15, 6);
+		new Monster("Werewolf", 6, 15, 15, 14, 6);
+		new Monster("Minotaur", 7, 19, 13, 12, 6);
+
+		new Monster("Gryphon", 8, 23, 22, 14, 7);
+		new Monster("Giant", 7, 24, 18, 18, 7);
+		
+		new Monster("Ghoast", 9, 26, 22, 26, 8);
+		new Monster("Goul", 8, 20, 26, 22, 8);
+		
+		new Monster("Hydra", 13, 29, 26, 28, 9);
+		new Monster("Basalisk", 12, 24, 29, 25, 9);
+		new Monster("Fallen Angel", 11, 23, 27, 27, 9);
+		
+		new Monster("Dragon", 16, 32, 28, 31, 10);
+		new Monster("Basalisk", 20, 33, 36, 24, 10);
+		new Monster("Monster Hoard", 18, 27, 35, 27, 10);
+	}
 }
