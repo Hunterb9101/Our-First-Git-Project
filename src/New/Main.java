@@ -30,7 +30,8 @@ public class Main {
 		}
 	}
 	public static void fight(Player a){
-		monsters e = new monsters(a.lvl);
+		monsters m = new monsters();
+		Monster e = m.pickMonster(a);
 		
 		//Random PlayerDamage = new Random();
 		//Random MonsterDamage = new Random();		
