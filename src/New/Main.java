@@ -32,18 +32,17 @@ public class Main {
 		}
 	}
 	public static void fight(Player a){
-		Monster m = new Monster("Read Only", 0, 0, 0, 0, 0);
-		Monster e = m.pickMonster(a);
+		Monster m = Monster.pickMonster(a);
 		
 		//Random PlayerDamage = new Random();
 		//Random MonsterDamage = new Random();		
 		
 		// fight!!!!!
-		while (e.health > 0 && a.hp > 0) {
+		while (m.health > 0 && a.hp > 0) {
 			// Calculate attack of Monster and Player, and deduct HP from both
 		}
 
-		if (e.health <= 0) {
+		if (m.health <= 0) {
 			// You win:
 			// Give gold and XP
 			
