@@ -7,6 +7,8 @@ public class Main {
 		Player me;
 		scan = new Scanner(System.in);
 		String action = "";
+		Registry r = new Registry();
+		r.initHelper();//initalizes the Helper(), so Runtime is started.
 		while (true) {
 			action = scan.nextLine();
 		}
@@ -30,17 +32,18 @@ public class Main {
 		}
 	}
 	public static void fight(Player a){
-		Monster m = Monster.pickMonster(a);
+		Monster m = new Monster("Read Only", 0, 0, 0, 0, 0);
+		Monster e = m.pickMonster(a);
 		
 		//Random PlayerDamage = new Random();
 		//Random MonsterDamage = new Random();		
 		
 		// fight!!!!!
-		while (m.health > 0 && a.hp > 0) {
+		while (e.health > 0 && a.hp > 0) {
 			// Calculate attack of Monster and Player, and deduct HP from both
 		}
 
-		if (m.health <= 0) {
+		if (e.health <= 0) {
 			// You win:
 			// Give gold and XP
 			
