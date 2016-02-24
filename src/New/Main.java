@@ -7,6 +7,8 @@ public class Main {
 		Player me;
 		scan = new Scanner(System.in);
 		String action = "";
+		Registry r = new Registry();
+		r.initHelper();//initalizes the Helper(), so Runtime is started.
 		while (true) {
 			action = scan.nextLine();
 		}

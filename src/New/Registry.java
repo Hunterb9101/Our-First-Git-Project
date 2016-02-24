@@ -1,6 +1,11 @@
 package New;
 
 public class Registry {
+	static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
+	//runtime not reset constantly, and it is public so we can pull it from other classes
+	public static void initHelper(){
+		h = new Helper();
+	}
 	public static void registerArmor(){
 		new Armor("Leather", 7, 52);
 		new Armor("chain mail", 9, 77);
