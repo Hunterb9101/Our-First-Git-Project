@@ -31,7 +31,7 @@ public class Monster {
 			// monster
 			// this is so we pick a monster within the meetable monsters for
 			// this player
-			m = m.AllMonsters.get(rand.nextInt(m.AllMonsters.size()));
+			m = AllMonsters.get(rand.nextInt(AllMonsters.size()));
 			// this picks a random monster within AllMonsters
 		}
 		return m;
