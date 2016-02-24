@@ -6,7 +6,7 @@ public class Player {
 	public int gold = 0; 
 	
 	public int hp = 0;
-	private int maxHp = 0; // !SHOULD NOT BE EDITED! //
+	private int maxHp = 0; // !SHOULD NOT BE EDITED! // Duh
 	
 	
 	/* Skills */
