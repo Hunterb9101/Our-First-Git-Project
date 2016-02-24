@@ -1,5 +1,7 @@
 package New;
 
+import java.util.Random;
+
 public class Registry {
 	static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
 	//runtime not reset constantly, and it is public so we can pull it from other classes
@@ -29,7 +31,7 @@ public class Registry {
 		new Weapon("enchanted sword", 16, 121);
 		new Weapon("Mythical sword", 18, 162);
 	}
-	
+
 	//Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable)
 	public static void registerMonsters(){
 		new Monster("Zombie", 1, 4, 2, 5, 1);

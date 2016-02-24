@@ -32,7 +32,7 @@ public class Main {
 		}
 	}
 	public static void fight(Player a){
-		monsters m = new monsters();
+		Monster m = new Monster("Read Only", 0, 0, 0, 0, 0);
 		Monster e = m.pickMonster(a);
 		
 		//Random PlayerDamage = new Random();
