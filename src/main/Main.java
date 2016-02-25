@@ -1,3 +1,6 @@
+/*
+ * JAKE WUZ HEAR!
+ */
 package main;
 import java.applet.AudioClip;
 import java.awt.Color;
