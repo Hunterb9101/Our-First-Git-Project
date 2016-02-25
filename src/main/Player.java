@@ -1,4 +1,4 @@
-package New;
+package main;
 public class Player {
 	
 	public int lvl = 1; // Player's Current Level
