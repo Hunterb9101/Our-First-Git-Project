@@ -1,4 +1,4 @@
-package New;
+package main;
 public class Player {
 	
 	public int lvl = 1; // Player's Current Level
@@ -6,11 +6,7 @@ public class Player {
 	public int gold = 0; 
 	
 	public int hp = 0;
-<<<<<<< HEAD
-	private int maxHp = 0; // !SHOULD NOT BE EDITED! // Duh
-=======
 	private int maxHp = 0; // !SHOULD NOT BE EDITED! // 
->>>>>>> origin/master
 	
 	
 	/* Skills */
