@@ -12,8 +12,8 @@ public abstract class GraphicsObject{
 	protected static int defaultHeight = 600;
 	
 	//Current Size of interface//
-	protected static int currWidth = defaultWidth;
-	protected static int currHeight = defaultHeight;
+	public static int currWidth = defaultWidth;
+	public static int currHeight = defaultHeight;
 	
 	//Current Scalar Values//
 	protected static double xScalar = ((double)currWidth/(double)defaultWidth);
@@ -35,15 +35,18 @@ public abstract class GraphicsObject{
 		allObjects.add(this);
 	}
 	
-	public abstract void drawObject(Graphics g, int currWidth, int currHeight);
+	public abstract void drawObject(Graphics g);
 	
 	
 	public abstract void onClick();
 	public abstract void onHover();
 	
-	public void setDimens(int cWidth, int cHeight){
+	public static void setDimens(int cWidth, int cHeight){
 		currWidth = cWidth;
 		currHeight = cHeight;
+		
+		xScalar = ((double)currWidth/(double)defaultWidth);
+		yScalar = ((double)currHeight/(double)defaultHeight);
 	}
 	
 	public void setDefaultDimens(int defWidth, int defHeight){
@@ -65,7 +68,7 @@ public abstract class GraphicsObject{
 		GraphicsObject obj;
 		for(int i = 0; i<allObjects.size(); i++){
 			obj = allObjects.get(i);
-			if((x > obj.x && x < obj.width+obj.x) && (y > obj.y && y < obj.y+obj.height)){
+			if((x > obj.x*xScalar && x < (obj.width+obj.x)*xScalar) && (y > obj.y*yScalar && y < (obj.y+obj.height)*yScalar)){
 				obj.onHover();
 			}
 		}
