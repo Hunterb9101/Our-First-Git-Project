@@ -11,6 +11,10 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import graphics.ConstructorClass;
+import graphics.GraphicsImage;
+import graphics.GraphicsObject;
+
 //need for music and sound
 
 public class Main extends ConstructorClass {
@@ -51,10 +55,20 @@ public class Main extends ConstructorClass {
 		GraphicsObject.checkOnHover(mouseX, mouseY);
 		
 		// MENU BUTTONS //
-		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "gitSwingBeta/Shop.png"),150,0,200,50);
+		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),150,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the Shop!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the Shop!");
+			}
+		};
 		
-		Image inventoryImg = getImage(getCodeBase(), "gitBetaSwing/Inventory.png");
-		Image adventureImg = getImage(getCodeBase(), "gitBetaSwing/Adventure.png");
+		//Image inventoryImg = getImage(getCodeBase(), "gitBetaSwing/Inventory.png");
+		//Image adventureImg = getImage(getCodeBase(), "gitBetaSwing/Adventure.png");
 		
 		switch(currMenu){
 		case NONE:

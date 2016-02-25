@@ -1,4 +1,4 @@
-package main;
+package graphics;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -38,8 +38,8 @@ public abstract class GraphicsObject{
 	public abstract void drawObject(Graphics g, int currWidth, int currHeight);
 	
 	
-	public abstract void baseOnClick();
-	public abstract void baseOnHover();
+	public abstract void onClick();
+	public abstract void onHover();
 	
 	public void setDimens(int cWidth, int cHeight){
 		currWidth = cWidth;
@@ -56,7 +56,7 @@ public abstract class GraphicsObject{
 		for(int i = 0; i<allObjects.size(); i++){
 			obj = allObjects.get(i);
 			if((x > obj.x && x < obj.width+obj.x) && (y > obj.y && y < obj.y+obj.height)){
-				obj.baseOnClick();
+				obj.onClick();
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public abstract class GraphicsObject{
 		for(int i = 0; i<allObjects.size(); i++){
 			obj = allObjects.get(i);
 			if((x > obj.x && x < obj.width+obj.x) && (y > obj.y && y < obj.y+obj.height)){
-				obj.baseOnHover();
+				obj.onHover();
 			}
 		}
 	}

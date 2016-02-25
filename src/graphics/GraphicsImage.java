@@ -1,4 +1,4 @@
-package main;
+package graphics;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class GraphicsImage extends GraphicsObject{
-	public String defName = "Shop";
 	public Image src;
 	
 	public boolean freeMotion = true; //Determines whether the object is scalable
@@ -26,10 +25,10 @@ public class GraphicsImage extends GraphicsObject{
 		g.drawImage(src,(int)dX,(int)dY,(int)dW,(int)dH,null);
 	}
 	
-	public void baseOnClick(){
-		System.out.println(defName + "clicked on");
+	public void onClick(){
+		System.out.println("clicked");
 	}
-	public void baseOnHover(){
-		System.out.println(defName + "hovered on.");
+	public void onHover(){
+		System.out.println("hovered");
 	}
 }
