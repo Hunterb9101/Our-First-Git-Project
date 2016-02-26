@@ -1,3 +1,6 @@
+/*
+ * JAKE WUZ HEAR!
+ */
 package main;
 import java.applet.AudioClip;
 import java.awt.Color;
@@ -11,6 +14,12 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import graphics.ConstructorClass;
+import graphics.GraphicsImage;
+import graphics.GraphicsLine;
+import graphics.GraphicsObject;
+import graphics.GraphicsPrimitives;
+
 //need for music and sound
 
 public class Main extends ConstructorClass {
@@ -19,6 +28,7 @@ public class Main extends ConstructorClass {
 	
 	GraphicsObject shop;
 	
+	Helper h = new Helper();
 	public static boolean isFirstFrame = true;
 	public Random rand = new Random();
 	// ********Global Variables
@@ -35,7 +45,6 @@ public class Main extends ConstructorClass {
 
 	// All drawing is done here //
 	synchronized public void drawFrame(Graphics g, int width, int height) {
-		
 		int mouseX = (int) (MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX());
 		int mouseY = (int) (MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().getY());
 		
@@ -45,33 +54,47 @@ public class Main extends ConstructorClass {
 			this.setSize(defaultWidth,defaultHeight);
 		}
 		
+		GraphicsObject.setDimens(getSize().width, getSize().height);
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
 		
 		GraphicsObject.checkOnHover(mouseX, mouseY);
 		
 		// MENU BUTTONS //
-		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "gitSwingBeta/Shop.png"),150,0,200,50);
+		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),0,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the Shop!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the Shop!");
+				//h.nap(1000);
+			}
+		};
 		
-		Image inventoryImg = getImage(getCodeBase(), "gitBetaSwing/Inventory.png");
-		Image adventureImg = getImage(getCodeBase(), "gitBetaSwing/Adventure.png");
+		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50);
+		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50);
+		
+		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
+		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
+		GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
 		
 		switch(currMenu){
 		case NONE:
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, 600, 55);
-			g.setColor(new Color(124,29,29));
-			g.fillRect(0, 52, 600, 2);
-			g.fillRect(0, 55, 600, 2);
-		
-			shop.drawObject(g, getSize().width, getSize().height);
+			bg.drawObject(g);
+			bgLine1.drawObject(g);
+			bgLine2.drawObject(g);
+			
+			shop.drawObject(g);
+			inventory.drawObject(g);
+			adventure.drawObject(g);
 			break;
 		case SHOP: break;
 		case ADVENTURE: break;
 		case INVENTORY: break;
-		}
-		//g.drawImage(adventureImg, 200, 0, 200, 50, null);
-		//g.drawImage(inventoryImg, 400, 0, 200, 50, null);		 
+		} 
 	}
 
 	public void mousePressed(MouseEvent evt) {
