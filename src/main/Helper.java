@@ -1,4 +1,4 @@
-package New;
+package main;
 import java.util.Scanner;
 import java.io.File;
 import java.util.Random;
@@ -188,7 +188,7 @@ public class Helper {
 		return endP;
 	}
 	
-	public void nap(int time){
+	public static void nap(int time){
 		try { //try's and catches Thread.sleep
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
