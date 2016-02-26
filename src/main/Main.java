@@ -70,7 +70,7 @@ public class Main extends ConstructorClass {
 			@Override
 			public void onHover(){
 				System.out.println("Hovering over the Shop!");
-				h.nap(1000);
+				//h.nap(1000);
 			}
 		};
 		
