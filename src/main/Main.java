@@ -74,8 +74,30 @@ public class Main extends ConstructorClass {
 			}
 		};
 		
-		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50);
-		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50);
+		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the Adventure!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the Adventure!");
+				//h.nap(1000);
+			}
+		};
+		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the inventory!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the inventory!");
+				//h.nap(1000);
+			}
+		};
 		
 		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
 		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
