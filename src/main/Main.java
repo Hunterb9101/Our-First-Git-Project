@@ -16,6 +16,7 @@ import javax.swing.*;
 
 import graphics.ConstructorClass;
 import graphics.GraphicsImage;
+import graphics.GraphicsInventory;
 import graphics.GraphicsLine;
 import graphics.GraphicsObject;
 import graphics.GraphicsPrimitives;
@@ -98,6 +99,7 @@ public class Main extends ConstructorClass {
 				//h.nap(1000);
 			}
 		};
+		GraphicsInventory flag = new GraphicsInventory(getImage(getCodeBase(), "res/Flag.png"), 400, 100, 50, 50, "Test");
 		
 		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
 		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
@@ -107,11 +109,11 @@ public class Main extends ConstructorClass {
 		case NONE:
 			bg.drawObject(g);
 			bgLine1.drawObject(g);
-			bgLine2.drawObject(g);
-			
+			bgLine2.drawObject(g);			
 			shop.drawObject(g);
 			inventory.drawObject(g);
 			adventure.drawObject(g);
+			flag.drawObject(g);
 			break;
 		case SHOP: break;
 		case ADVENTURE: break;

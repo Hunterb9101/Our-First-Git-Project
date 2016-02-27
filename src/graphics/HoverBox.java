@@ -19,9 +19,10 @@ public class HoverBox{
 		height = iHeight;
 	}
 	public void drawObject(Graphics g) {
+		System.out.println("Hover box drawing");
 		g.setColor(Color.blue);
 		g.drawRect(x, y, width, height);
-		g.drawString(text, x + 5, y - 5);
+		g.drawString(text, x + 5, y + 28);
 	}
 
 }
