@@ -1,6 +1,3 @@
-/*
- * JAKE WUZ HEAR!
- */
 package main;
 import java.applet.AudioClip;
 import java.awt.Color;
@@ -14,12 +11,8 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import graphics.ConstructorClass;
-import graphics.GraphicsImage;
-import graphics.GraphicsInventory;
-import graphics.GraphicsLine;
-import graphics.GraphicsObject;
-import graphics.GraphicsPrimitives;
+import graphics.*;
+import windows.*;
 
 //need for music and sound
 
@@ -41,6 +34,7 @@ public class Main extends ConstructorClass {
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
+		Registry.registerImageResources();
 		
 	} // doInitialization
 
@@ -58,62 +52,12 @@ public class Main extends ConstructorClass {
 		GraphicsObject.setDimens(getSize().width, getSize().height);
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
-		
-		
-		// MENU BUTTONS //
-		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),0,0,200,50){
-			@Override 
-			public void onClick(){
-				System.out.println("This is the Shop!");
-			}
-			
-			@Override
-			public void onHover(){
-				System.out.println("Hovering over the Shop!");
-				//h.nap(1000);
-			}
-		};
-		
-		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50){
-			@Override 
-			public void onClick(){
-				System.out.println("This is the Adventure!");
-			}
-			
-			@Override
-			public void onHover(){
-				System.out.println("Hovering over the Adventure!");
-				//h.nap(1000);
-			}
-		};
-		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50){
-			@Override 
-			public void onClick(){
-				System.out.println("This is the inventory!");
-			}
-			
-			@Override
-			public void onHover(){
-				System.out.println("Hovering over the inventory!");
-				//h.nap(1000);
-			}
-		};
+	
 		GraphicsInventory flag = new GraphicsInventory(getImage(getCodeBase(), "res/Flag.png"), 400, 100, 50, 50, "Test");
-		
-		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
-		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
-		GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
 		
 		switch(currMenu){
 		case NONE:
-			flag.drawObject(g);
-			bg.drawObject(g);
-			bgLine1.drawObject(g);
-			bgLine2.drawObject(g);			
-			shop.drawObject(g);
-			inventory.drawObject(g);
-			adventure.drawObject(g);
-			
+			new DefaultMenu().draw(g);
 			break;
 		case SHOP: break;
 		case ADVENTURE: break;
