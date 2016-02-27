@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import graphics.GraphicsImage;
 import graphics.GraphicsInventory;
 import graphics.GraphicsPrimitives;
+import main.Main;
 import main.Registry;
 
 public class DefaultMenu extends WindowItem {
@@ -21,7 +22,18 @@ public class DefaultMenu extends WindowItem {
 		}
 	};
 	GraphicsImage adventure = new GraphicsImage(Registry.imgRes.get("FightLoopMenu"),200,0,200,50);
-	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50);
+	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50){
+		@Override 
+		public void onClick(){
+			System.out.println("This is the inventory!");
+			Main.currMenu = menuItem.INVENTORY;
+		}
+		
+		@Override
+		public void onHover(){
+			System.out.println("Hovering over the Inventory!");
+		}
+	};
 	
 	GraphicsInventory flag = new GraphicsInventory(Registry.imgRes.get("Flag"), 400, 100, 50, 50, "Test");//test inventory
 	

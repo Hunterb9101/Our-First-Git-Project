@@ -59,7 +59,9 @@ public class Main extends ConstructorClass {
 			break;
 		case SHOP: break;
 		case ADVENTURE: break;
-		case INVENTORY: break;
+		case INVENTORY: 
+			new InventoryWindow().draw(g);
+			break;
 		}
 		GraphicsObject.checkOnHover(mouseX, mouseY);
 	}
