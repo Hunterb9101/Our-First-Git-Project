@@ -18,4 +18,8 @@ public class Armor {
 		this.cost = cost;
 		allArmor.add(this);
 	}
+	public String parseText(){
+		String retString = name + " blocks " + defense + " damage";
+		return retString;
+	}
 }

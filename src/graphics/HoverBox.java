@@ -11,11 +11,11 @@ public class HoverBox{
 	int y;
 	int width;
 	int height;
-	public HoverBox(int iX, int iY, int iWidth, int iHeight, String iText){
+	public HoverBox(int iX, int iY, int iHeight, String iText){
 		text = iText;
 		x = iX;
 		y = iY;
-		width = iWidth;
+		width = iText.length() * 20;
 		height = iHeight;
 	}
 	public void drawObject(Graphics g) {

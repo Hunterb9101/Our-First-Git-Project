@@ -59,7 +59,6 @@ public class Main extends ConstructorClass {
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
 		
-		GraphicsObject.checkOnHover(mouseX, mouseY);
 		
 		// MENU BUTTONS //
 		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),0,0,200,50){
@@ -107,18 +106,20 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
+			flag.drawObject(g);
 			bg.drawObject(g);
 			bgLine1.drawObject(g);
 			bgLine2.drawObject(g);			
 			shop.drawObject(g);
 			inventory.drawObject(g);
 			adventure.drawObject(g);
-			flag.drawObject(g);
+			
 			break;
 		case SHOP: break;
 		case ADVENTURE: break;
 		case INVENTORY: break;
-		} 
+		}
+		GraphicsObject.checkOnHover(mouseX, mouseY);
 	}
 
 	public void mousePressed(MouseEvent evt) {

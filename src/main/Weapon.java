@@ -14,4 +14,8 @@ public class Weapon {
 		this.cost = cost;
 		allWeapons.add(this);	
 	}
+	public String parseText(){
+		String retString = name + " does " + damage + " damage";
+		return retString;
+	}
 }
