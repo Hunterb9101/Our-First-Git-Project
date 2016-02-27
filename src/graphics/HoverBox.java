@@ -24,9 +24,11 @@ public class HoverBox{
 		g = m.getGraphics();
 	}
 	public void drawObject(Graphics g) {
-		System.out.println("Hover box drawing");
-		g.setColor(Color.blue);
+		g.setColor(Color.yellow);
 		g.drawRect(x, y, width, height);
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(x, y, width, height);
+		g.setColor(Color.yellow);
 		g.drawString(text, x + 5, y + 28);
 	}
 

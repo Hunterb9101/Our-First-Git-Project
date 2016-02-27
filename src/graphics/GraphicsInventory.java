@@ -38,21 +38,13 @@ public class GraphicsInventory extends GraphicsObject{
 	}
 	public void drawObject(Graphics g){
 		graphics = g;
-		graphics.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
-		System.out.println(draw);
-		System.out.println("Drawing by hand");
-		if(draw){
-			
-		}		
+		graphics.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);	
 		//draw = false;
 	}	
 	public void onClick(){
 		//equip
 	}
 	public void onHover(){
-		//show box
-		draw = true;
-		System.out.println("Hovering over an inventory " + draw);
 		descrip.drawObject(graphics);
 		//
 	}
