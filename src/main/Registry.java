@@ -9,9 +9,10 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 public class Registry {
-	public static HashMap<String, Image> imgRes = new HashMap<String,Image>();
-	static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
-					//runtime not reset constantly, and it is public so we can pull it from other classes
+	public static HashMap<String,Image> imgRes = new HashMap<String,Image>();
+	
+	public static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
+	//runtime not reset constantly, and it is public so we can pull it from other classes
 	public static void initHelper(){
 		h = new Helper();
 	}
@@ -24,12 +25,6 @@ public class Registry {
 		return img;
 	}
 	
-	public static void registerImageResources(){
-		imgRes.put("FightLoopMenu", loadImage("res/Adventure.png"));
-		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
-		imgRes.put("ShopMenu", loadImage("res/Shop.png"));
-	}
-	
 	public static void registerArmor(){
 		new Armor("Leather", 7, 52);
 		new Armor("chain mail", 9, 77);
@@ -40,6 +35,12 @@ public class Registry {
 		new Armor("Dragon", 23, 157);
 	}
 	
+	public static void registerImageResources(){
+		imgRes.put("ShopMenu", loadImage("res/Shop.png"));
+		imgRes.put("FightLoopMenu", loadImage("res/Adventure.png"));
+		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
+		imgRes.put("Flag", loadImage("res/Flag.png"));//test image
+	}
 	public static void registerWeapons(){
 		new Weapon("Iron sword", 6, 37);
 		new Weapon("Wood sword", 3, 17);

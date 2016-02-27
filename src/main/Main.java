@@ -20,19 +20,21 @@ public class Main extends ConstructorClass {
 	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.NONE;
 	
+	GraphicsObject shop;
+	
+	Helper h = new Helper();
 	public static boolean isFirstFrame = true;
 	public Random rand = new Random();
-	
 	// ********Global Variables
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
 	public void doInitialization(int width, int height) {
 		Registry.initHelper();//initalizes the Helper(), so Runtime is started.
-		Registry.registerImageResources();
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
+		Registry.registerImageResources();
 		
 	} // doInitialization
 
@@ -51,18 +53,15 @@ public class Main extends ConstructorClass {
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
 		
-		GraphicsObject.checkOnHover(mouseX, mouseY);
-		
 		switch(currMenu){
-			case NONE:
-				new DefaultMenu().draw(g);
-			case SHOP:
-				new ShopWindow().draw(g);
-			case ADVENTURE:
-				new FightLoopWindow().draw(g);
-			case INVENTORY:
-				new InventoryWindow().draw(g);
-		} 
+		case NONE:
+			new DefaultMenu().draw(g);
+			break;
+		case SHOP: break;
+		case ADVENTURE: break;
+		case INVENTORY: break;
+		}
+		GraphicsObject.checkOnHover(mouseX, mouseY);
 	}
 
 	public void mousePressed(MouseEvent evt) {
@@ -80,6 +79,10 @@ public class Main extends ConstructorClass {
 
 /*
  * 	public static void town(String action) {
+		if (action.equalsIgnoreCase("Town")) {
+			System.out.println("What would you like to do?");
+			action = scan.nextLine().toLowerCase();
+			
 			switch(action){
 				case "sell": sell(); break;
 				case "buy": buy(); break;
