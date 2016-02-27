@@ -52,8 +52,6 @@ public class Main extends ConstructorClass {
 		GraphicsObject.setDimens(getSize().width, getSize().height);
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
-	
-		GraphicsInventory flag = new GraphicsInventory(getImage(getCodeBase(), "res/Flag.png"), 400, 100, 50, 50, "Test");
 		
 		switch(currMenu){
 		case NONE:

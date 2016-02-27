@@ -39,6 +39,7 @@ public class Registry {
 		imgRes.put("ShopMenu", loadImage("res/Shop.png"));
 		imgRes.put("FightLoopMenu", loadImage("res/Adventure.png"));
 		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
+		imgRes.put("Flag", loadImage("res/Flag.png"));//test image
 	}
 	public static void registerWeapons(){
 		new Weapon("Iron sword", 6, 37);
