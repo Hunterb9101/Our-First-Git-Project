@@ -1,3 +1,6 @@
+/*
+ * JAKE WUZ HEAR!
+ */
 package main;
 import java.applet.AudioClip;
 import java.awt.Color;
@@ -11,8 +14,12 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import graphics.*;
-import windows.*;
+import graphics.ConstructorClass;
+import graphics.GraphicsImage;
+import graphics.GraphicsInventory;
+import graphics.GraphicsLine;
+import graphics.GraphicsObject;
+import graphics.GraphicsPrimitives;
 
 //need for music and sound
 
@@ -20,16 +27,17 @@ public class Main extends ConstructorClass {
 	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.NONE;
 	
+	GraphicsObject shop;
+	
+	Helper h = new Helper();
 	public static boolean isFirstFrame = true;
 	public Random rand = new Random();
-	
 	// ********Global Variables
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
 	public void doInitialization(int width, int height) {
 		Registry.initHelper();//initalizes the Helper(), so Runtime is started.
-		Registry.registerImageResources();
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
@@ -51,18 +59,67 @@ public class Main extends ConstructorClass {
 		g.setColor(Color.lightGray);
 		g.fillRect(0, 0, width, height);
 		
-		GraphicsObject.checkOnHover(mouseX, mouseY);
+		
+		// MENU BUTTONS //
+		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),0,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the Shop!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the Shop!");
+				//h.nap(1000);
+			}
+		};
+		
+		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the Adventure!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the Adventure!");
+				//h.nap(1000);
+			}
+		};
+		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50){
+			@Override 
+			public void onClick(){
+				System.out.println("This is the inventory!");
+			}
+			
+			@Override
+			public void onHover(){
+				System.out.println("Hovering over the inventory!");
+				//h.nap(1000);
+			}
+		};
+		GraphicsInventory flag = new GraphicsInventory(getImage(getCodeBase(), "res/Flag.png"), 400, 100, 50, 50, "Test");
+		
+		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
+		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
+		GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
 		
 		switch(currMenu){
-			case NONE:
-				new DefaultMenu().draw(g);
-			case SHOP:
-				new ShopWindow().draw(g);
-			case ADVENTURE:
-				new FightLoopWindow().draw(g);
-			case INVENTORY:
-				new InventoryWindow().draw(g);
-		} 
+		case NONE:
+			flag.drawObject(g);
+			bg.drawObject(g);
+			bgLine1.drawObject(g);
+			bgLine2.drawObject(g);			
+			shop.drawObject(g);
+			inventory.drawObject(g);
+			adventure.drawObject(g);
+			
+			break;
+		case SHOP: break;
+		case ADVENTURE: break;
+		case INVENTORY: break;
+		}
+		GraphicsObject.checkOnHover(mouseX, mouseY);
 	}
 
 	public void mousePressed(MouseEvent evt) {
@@ -80,6 +137,10 @@ public class Main extends ConstructorClass {
 
 /*
  * 	public static void town(String action) {
+		if (action.equalsIgnoreCase("Town")) {
+			System.out.println("What would you like to do?");
+			action = scan.nextLine().toLowerCase();
+			
 			switch(action){
 				case "sell": sell(); break;
 				case "buy": buy(); break;
