@@ -35,7 +35,7 @@ public abstract class GraphicsObject{
 		allObjects.add(this);
 	}
 	
-	public abstract void drawObject(Graphics g);
+	public abstract void drawObject();
 	
 	
 	public abstract void onClick();

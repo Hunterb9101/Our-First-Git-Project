@@ -45,13 +45,13 @@ public class DefaultMenu extends WindowItem {
 	GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
 	
 	@Override
-	public void draw(Graphics g) {
-		bg.drawObject(g);
-		bgLine1.drawObject(g);
-		bgLine2.drawObject(g);
-		shop.drawObject(g);
-		inventory.drawObject(g);
-		adventure.drawObject(g);	
+	public void draw() {
+		bg.drawObject();
+		bgLine1.drawObject();
+		bgLine2.drawObject();
+		shop.drawObject();
+		inventory.drawObject();
+		adventure.drawObject();	
 	}
 
 }

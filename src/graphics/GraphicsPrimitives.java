@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import main.Registry;
+
 public class GraphicsPrimitives extends GraphicsObject{	
 	Color c = Color.BLACK;
 	
@@ -16,9 +18,9 @@ public class GraphicsPrimitives extends GraphicsObject{
 		c = iC;
 	}
 	
-	public void drawObject(Graphics g){
-		g.setColor(c);
-		g.fillRect((int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar));
+	public void drawObject(){
+		Registry.g.setColor(c);
+		Registry.g.fillRect((int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar));
 	}
 	
 	public void onClick(){}

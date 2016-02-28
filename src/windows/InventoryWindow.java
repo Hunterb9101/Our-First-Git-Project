@@ -28,11 +28,11 @@ public class InventoryWindow extends WindowItem {
 	GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
 	
 	@Override
-	public void draw(Graphics g) {
+	public void draw() {
 		GraphicsInventory flag = new GraphicsInventory(Registry.imgRes.get("Flag"), 400, 100, 50, 50, "Test");//test inventory
 		GraphicsInventory flag2 = new GraphicsInventory(Registry.imgRes.get("Flag2"), 455, 100, 50, 50, "Better Flag E!");
 		
-		flag.drawObject(g);
-		flag2.drawObject(g);
+		flag.drawObject();
+		flag2.drawObject();
 	}
 }

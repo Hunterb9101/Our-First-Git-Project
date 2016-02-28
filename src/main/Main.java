@@ -36,33 +36,34 @@ public class Main extends ConstructorClass {
 	}
 
 	// All drawing is done here //
-	synchronized public void drawFrame(Graphics g, int width, int height) {	
+	synchronized public void drawFrame(Graphics g, int width, int height) {
+		Registry.g = g;
 		if(isFirstFrame){
 			isFirstFrame = false;
 			this.setSize(defaultWidth,defaultHeight);
 		}
 		
-		g.setColor(Color.lightGray);
+		Registry.g.setColor(Color.lightGray);
 		GraphicsObject.setDimens(getSize().width, getSize().height);
-		g.fillRect(0, 0, width, height);
+		Registry.g.fillRect(0, 0, width, height);
 		
 		switch(currMenu){
 		case NONE:
-			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject(g);
+			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject();
 			break;
 		case SHOP: 
-			new ShopWindow().draw(g);
+			new ShopWindow().draw();
 			break;
 			
 		case ADVENTURE: 
-			new FightLoopWindow().draw(g);
+			new FightLoopWindow().draw();
 			break;
 		case INVENTORY: 
-			new InventoryWindow().draw(g);
+			new InventoryWindow().draw();
 			break;
 		}
 		
-		new DefaultMenu().draw(g);
+		new DefaultMenu().draw();
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
