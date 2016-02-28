@@ -23,8 +23,6 @@ public class DefaultMenu extends WindowItem {
 	GraphicsImage adventure = new GraphicsImage(Registry.imgRes.get("FightLoopMenu"),200,0,200,50);
 	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50);
 	
-	GraphicsInventory flag = new GraphicsInventory(Registry.imgRes.get("Flag"), 400, 100, 50, 50, "Test");//test inventory
-	
 	GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
 	GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
 	GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
@@ -34,7 +32,6 @@ public class DefaultMenu extends WindowItem {
 		bg.drawObject(g);
 		bgLine1.drawObject(g);
 		bgLine2.drawObject(g);
-		flag.drawObject(g);
 		shop.drawObject(g);
 		inventory.drawObject(g);
 		adventure.drawObject(g);	
