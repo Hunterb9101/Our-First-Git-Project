@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import main.Registry;
+
 public class GraphicsImage extends GraphicsObject{
 	public Image src;
 	
@@ -15,8 +17,8 @@ public class GraphicsImage extends GraphicsObject{
 		src = iSrc;
 	}
 	
-	public void drawObject(Graphics g){
-		g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
+	public void drawObject(){
+		Registry.g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
 	}
 	
 	public void onClick(){}

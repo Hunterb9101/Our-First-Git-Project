@@ -40,16 +40,15 @@ public class GraphicsInventory extends GraphicsObject{
 		descrip = new HoverBox(iX, iY - iHeight/4*3, text);
 	}
 	
-	public void drawObject(Graphics g){
-		graphics = g;
-		graphics.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
+	public void drawObject(){
+		Registry.g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
 	}
 	
 	public void onClick(){
 		//equip
 	}
 	public void onHover(){
-		descrip.drawObject(graphics); //Show Hover Box
+		descrip.drawObject(); //Show Hover Box
 	}
 
 
