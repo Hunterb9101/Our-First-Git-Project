@@ -3,9 +3,7 @@ package windows;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import graphics.GraphicsImage;
-import graphics.GraphicsInventory;
-import graphics.GraphicsPrimitives;
+import graphics.*;
 import main.Main;
 import main.Registry;
 
@@ -31,11 +29,10 @@ public class InventoryWindow extends WindowItem {
 	
 	@Override
 	public void draw(Graphics g) {
-		bg.drawObject(g);
-		bgLine1.drawObject(g);
-		bgLine2.drawObject(g);
+		GraphicsInventory flag = new GraphicsInventory(Registry.imgRes.get("Flag"), 400, 100, 50, 50, "Test");//test inventory
+		GraphicsInventory flag2 = new GraphicsInventory(Registry.imgRes.get("Flag2"), 455, 100, 50, 50, "Better Flag E!");
+		
 		flag.drawObject(g);
-		inventory.drawObject(g);	
+		flag2.drawObject(g);
 	}
-
 }

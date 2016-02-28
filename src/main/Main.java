@@ -20,63 +20,63 @@ public class Main extends ConstructorClass {
 	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.NONE;
 	
-	GraphicsObject shop;
+	private static boolean isFirstFrame = true;
 	
-	Helper h = new Helper();
-	public static boolean isFirstFrame = true;
 	public Random rand = new Random();
-	// ********Global Variables
+	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
 	public void doInitialization(int width, int height) {
-		Registry.initHelper();//initalizes the Helper(), so Runtime is started.
+		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
-		Registry.registerImageResources();
-		
-	} // doInitialization
+		Registry.registerImageResources();		
+	}
 
 	// All drawing is done here //
-	synchronized public void drawFrame(Graphics g, int width, int height) {
-		int mouseX = (int) (MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX());
-		int mouseY = (int) (MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().getY());
-		
-		
+	synchronized public void drawFrame(Graphics g, int width, int height) {	
 		if(isFirstFrame){
 			isFirstFrame = false;
 			this.setSize(defaultWidth,defaultHeight);
 		}
 		
-		GraphicsObject.setDimens(getSize().width, getSize().height);
 		g.setColor(Color.lightGray);
+		GraphicsObject.setDimens(getSize().width, getSize().height);
 		g.fillRect(0, 0, width, height);
 		
 		switch(currMenu){
 		case NONE:
-			new DefaultMenu().draw(g);
+			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject(g);
 			break;
-		case SHOP: break;
-		case ADVENTURE: break;
+		case SHOP: 
+			new ShopWindow().draw(g);
+			break;
+			
+		case ADVENTURE: 
+			new FightLoopWindow().draw(g);
+			break;
 		case INVENTORY: 
 			new InventoryWindow().draw(g);
 			break;
 		}
-		GraphicsObject.checkOnHover(mouseX, mouseY);
+		
+		new DefaultMenu().draw(g);
+		
+		GraphicsObject.checkOnHover(
+				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
+				(int)(MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().getY())
+		);
 	}
 
 	public void mousePressed(MouseEvent evt) {
 		super.mousePressed(evt);
 		GraphicsObject.checkOnClick(evt.getX(), evt.getY());
 	}
-
-	public void keyPressed(KeyEvent evt) {
-	}
-
-	public void keyReleased(KeyEvent evt){
-	}
-
+	
+	public void keyPressed(KeyEvent evt) {}
+	public void keyReleased(KeyEvent evt){}
 }
 
 /*
