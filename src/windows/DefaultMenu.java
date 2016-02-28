@@ -31,7 +31,14 @@ public class DefaultMenu extends WindowItem {
 		public void onClick(){
 			Main.currMenu = Main.menuItem.INVENTORY;
 		}
+		
+		@Override
+		public void onHover(){
+			System.out.println("Hovering over the Inventory!");
+		}
 	};
+	
+	
 	
 	GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
 	GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
