@@ -49,18 +49,20 @@ public class Main extends ConstructorClass {
 		switch(currMenu){
 		case NONE:
 			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject(g);
-			new DefaultMenu().draw(g);
-			
-			GraphicsInventory flag = new GraphicsInventory(Registry.imgRes.get("Flag"), 400, 100, 50, 50, "Test");//test inventory
-			GraphicsInventory flag2 = new GraphicsInventory(Registry.imgRes.get("Flag2"), 455, 100, 50, 50, "Better Flag E!");
-			
-			flag.drawObject(g);
-			flag2.drawObject(g);
 			break;
-		case SHOP: break;
-		case ADVENTURE: break;
-		case INVENTORY: break;
+		case SHOP: 
+			new ShopWindow().draw(g);
+			break;
+			
+		case ADVENTURE: 
+			new FightLoopWindow().draw(g);
+			break;
+		case INVENTORY: 
+			new InventoryWindow().draw(g);
+			break;
 		}
+		
+		new DefaultMenu().draw(g);
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 

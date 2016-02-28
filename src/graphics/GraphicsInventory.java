@@ -15,6 +15,7 @@ import main.Weapon;
 public class GraphicsInventory extends GraphicsObject{
 	public Image src;
 	public String text;
+	
 	private HoverBox descrip;
 	private Graphics graphics;
 	

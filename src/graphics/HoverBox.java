@@ -14,7 +14,7 @@ public class HoverBox extends GraphicsObject{
 	
 	Color bgColor = new Color(0,0,0,128);
 	Color fgColor = new Color(255,255,255);
-	Font f = new Font("SanSerif", Font.BOLD, 18);
+	Font f = new Font("SanSerif", Font.PLAIN, 18);
 	
 	public HoverBox(int iX, int iY, String iText){
 		super(iX,iY,0,0);
