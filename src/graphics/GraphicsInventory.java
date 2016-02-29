@@ -17,8 +17,6 @@ public class GraphicsInventory extends GraphicsObject{
 	public String text;
 	
 	private HoverBox descrip;
-	private Graphics graphics;
-	
 	public GraphicsInventory(Image iSrc,int iX, int iY, int iWidth, int iHeight, String iText){
 		super(iX,iY,iWidth,iHeight);
 		src = iSrc;
