@@ -42,6 +42,7 @@ public class Registry {
 		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
 		imgRes.put("Flag", loadImage("res/Flag.png"));//test image
 		imgRes.put("Flag2", loadImage("res/Flag2.png"));
+		imgRes.put("Grid", loadImage("res/Grid.png"));
 	}
 	public static void registerWeapons(){
 		new Weapon("Iron sword", 6, 37);
