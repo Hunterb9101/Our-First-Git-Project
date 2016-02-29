@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import javax.imageio.ImageIO;
 
 public class Registry {
 	public static HashMap<String,Image> imgRes = new HashMap<String,Image>();
-	
+	public static Graphics g;
 	public static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
 	//runtime not reset constantly, and it is public so we can pull it from other classes
 	public static void initHelper(){
@@ -41,6 +42,7 @@ public class Registry {
 		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
 		imgRes.put("Flag", loadImage("res/Flag.png"));//test image
 		imgRes.put("Flag2", loadImage("res/Flag2.png"));
+		imgRes.put("Grid", loadImage("res/Grid.png"));
 	}
 	public static void registerWeapons(){
 		new Weapon("Iron sword", 6, 37);
