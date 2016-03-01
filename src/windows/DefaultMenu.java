@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import graphics.GraphicsImage;
-import graphics.GraphicsInventory;
+import graphics.GraphicsGridEntry;
 import graphics.GraphicsPrimitives;
 import main.Main;
 import main.Registry;
@@ -24,6 +24,8 @@ public class DefaultMenu extends WindowItem {
 		public void onClick(){
 			Main.currMenu = Main.menuItem.ADVENTURE;
 		}
+		
+		@Override public void onHover(){}
 	};
 	
 	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50){
@@ -32,10 +34,7 @@ public class DefaultMenu extends WindowItem {
 			Main.currMenu = Main.menuItem.INVENTORY;
 		}
 		
-		@Override
-		public void onHover(){
-			System.out.println("Hovering over the Inventory!");
-		}
+		@Override public void onHover(){}
 	};
 	
 	
