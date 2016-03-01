@@ -33,7 +33,8 @@ public abstract class GraphicsObject{
 		width = iWidth;
 		height = iHeight;
 		allObjects.add(this);
-		System.out.println("Size " + allObjects.size());
+		
+		System.out.println("SYSTEM: OBJECTS INITIALIZED: " + allObjects.size());
 	}
 	
 	public abstract void drawObject();
