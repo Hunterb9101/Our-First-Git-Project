@@ -40,15 +40,9 @@ public class HoverBox extends GraphicsObject{
 		Registry.g.drawString(text,(int)(xScalar*x)+3, (int)(yScalar*(y+height)));
 	}
 
-	@Override
-	public void onClick() {
-		
-	}
+	@Override public void onClick() {}
 
-	@Override
-	public void onHover() {
-		
-	}
+	@Override public void onHover() {}
 
 
 }
