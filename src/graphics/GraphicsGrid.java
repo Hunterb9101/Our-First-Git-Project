@@ -1,25 +1,54 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 
 import main.Registry;
 
 public class GraphicsGrid extends GraphicsObject {
-	private Image src = Registry.imgRes.get("Grid");
-	public ArrayList<GraphicsInventory> items = new ArrayList<GraphicsInventory>(5);
+	public GraphicsGridEntry[] items = new GraphicsGridEntry[25];
+	
+	public int rows = 5;
+	public int columns = 5;
+	public static int xPadding = 3;
+	public static int yPadding = 3;
+	
 	int x;
 	int y;
+	
+	static int gridSizeX = 50;
+	static int gridSizeY = 50;
 
-	public GraphicsGrid(int iX, int iY, int iWidth, int iHeight) {
-		super(iX, iY, iWidth, iHeight);
+	public GraphicsGrid(int iX, int iY, int rows, int columns) {
+		super(iX, iY, rows*gridSizeX+(rows-1)*xPadding, columns*gridSizeY+(columns-1)*yPadding);
 		x = iX;
 		y = iY;
+		this.rows = rows;
+		this.columns = columns;
 	}
-
+	
 	@Override
 	public void drawObject() {
-		Registry.g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
+		//Registry.g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
+		
+		for(int r = 0; r<rows; r++){
+			for(int c = 0; c<columns; c++){
+				Registry.g.setColor(Color.BLACK);
+				
+				
+				try{
+					new GraphicsImage(items[c*rows + r].i.src,x + r*gridSizeX + xPadding*r,y+c*gridSizeY + yPadding*c, gridSizeX, gridSizeY).drawObject();
+				}catch(NullPointerException e){
+					new GraphicsPrimitives(Color.BLACK,x + r*gridSizeX + xPadding*r,y+c*gridSizeY + yPadding*c, gridSizeX, gridSizeY).drawObject();
+					//Registry.g.drawString(String.valueOf(c*rows + r+1),x + r*gridSizeX + xPadding*r+16, y+c*gridSizeY + yPadding*c+50);
+				}
+				System.out.println(r + ", " + c);
+				//Basic Checking Mechanism (Displays Numbers and Rectangles)
+				
+			}
+		}
+		/*
 		for (int i = 0; i < 18; i++) {// 18 is the current number of weapons and
 		// armor we have, only a temporary fix, until we know how to clear the array list and remain functional
 			if(i > items.size() - 1){
@@ -33,6 +62,7 @@ public class GraphicsGrid extends GraphicsObject {
 			}
 
 		}
+		*/
 	}
 
 	private int[] findSpot(int index) {// returns x start and y start
