@@ -11,11 +11,8 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import graphics.ConstructorClass;
-import graphics.GraphicsImage;
-import graphics.GraphicsLine;
-import graphics.GraphicsObject;
-import graphics.GraphicsPrimitives;
+import graphics.*;
+import windows.*;
 
 //need for music and sound
 
@@ -23,88 +20,64 @@ public class Main extends ConstructorClass {
 	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.NONE;
 	
-	GraphicsObject shop;
+	private static boolean isFirstFrame = true;
 	
-	Helper h = new Helper();
-	public static boolean isFirstFrame = true;
 	public Random rand = new Random();
-	// ********Global Variables
+	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
 	public void doInitialization(int width, int height) {
-		Registry.initHelper();//initalizes the Helper(), so Runtime is started.
+		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
-		
-	} // doInitialization
+		Registry.registerImageResources();		
+	}
 
 	// All drawing is done here //
 	synchronized public void drawFrame(Graphics g, int width, int height) {
-		int mouseX = (int) (MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX());
-		int mouseY = (int) (MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().getY());
-		
-		
+		Registry.g = g;
 		if(isFirstFrame){
 			isFirstFrame = false;
 			this.setSize(defaultWidth,defaultHeight);
 		}
 		
+		Registry.g.setColor(Color.lightGray);
 		GraphicsObject.setDimens(getSize().width, getSize().height);
-		g.setColor(Color.lightGray);
-		g.fillRect(0, 0, width, height);
-		
-		GraphicsObject.checkOnHover(mouseX, mouseY);
-		
-		// MENU BUTTONS //
-		GraphicsImage shop = new GraphicsImage(getImage(getCodeBase(), "res/Shop.png"),0,0,200,50){
-			@Override 
-			public void onClick(){
-				System.out.println("This is the Shop!");
-			}
-			
-			@Override
-			public void onHover(){
-				System.out.println("Hovering over the Shop!");
-				//h.nap(1000);
-			}
-		};
-		
-		GraphicsImage adventure = new GraphicsImage(getImage(getCodeBase(), "res/Adventure.png"),200,0,200,50);
-		GraphicsImage inventory = new GraphicsImage(getImage(getCodeBase(), "res/Inventory.png"),400,0,200,50);
-		
-		GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
-		GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
-		GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
+		Registry.g.fillRect(0, 0, width, height);
 		
 		switch(currMenu){
 		case NONE:
-			bg.drawObject(g);
-			bgLine1.drawObject(g);
-			bgLine2.drawObject(g);
-			
-			shop.drawObject(g);
-			inventory.drawObject(g);
-			adventure.drawObject(g);
+			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject();
 			break;
-		case SHOP: break;
-		case ADVENTURE: break;
-		case INVENTORY: break;
-		} 
+		case SHOP: 
+			new ShopWindow().draw();
+			break;
+			
+		case ADVENTURE: 
+			new FightLoopWindow().draw();
+			break;
+		case INVENTORY: 
+			new InventoryWindow().draw();
+			break;
+		}
+		
+		new DefaultMenu().draw();
+		
+		GraphicsObject.checkOnHover(
+				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
+				(int)(MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().getY())
+		);
 	}
 
 	public void mousePressed(MouseEvent evt) {
 		super.mousePressed(evt);
 		GraphicsObject.checkOnClick(evt.getX(), evt.getY());
 	}
-
-	public void keyPressed(KeyEvent evt) {
-	}
-
-	public void keyReleased(KeyEvent evt){
-	}
-
+	
+	public void keyPressed(KeyEvent evt) {}
+	public void keyReleased(KeyEvent evt){}
 }
 
 /*
