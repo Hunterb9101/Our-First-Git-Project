@@ -17,8 +17,8 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
-	public static menuItem currMenu = menuItem.NONE;
+	public static enum menuItem{NONE,STARTWINDOW,SHOP,ADVENTURE,INVENTORY};
+	public static menuItem currMenu = menuItem.STARTWINDOW;
 	
 	private static boolean isFirstFrame = true;
 	
@@ -51,6 +51,11 @@ public class Main extends ConstructorClass {
 		case NONE:
 			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject();
 			break;
+			
+		case STARTWINDOW:
+			new StartWindowMenu().draw();
+			break;
+			
 		case SHOP: 
 			new ShopWindow().draw();
 			break;
@@ -58,12 +63,13 @@ public class Main extends ConstructorClass {
 		case ADVENTURE: 
 			new FightLoopWindow().draw();
 			break;
+			
 		case INVENTORY: 
 			new InventoryWindow().draw();
 			break;
 		}
 		
-		new DefaultMenu().draw();
+		//new DefaultMenu().draw();
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
