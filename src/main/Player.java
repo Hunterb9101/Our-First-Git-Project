@@ -21,6 +21,7 @@ public class Player {
 	public int skillHitPoints = 0; //Adds Hitpoints to User
 	public double skillEvasionChance = 0; // Chance to Evade Enemy
 	public int skillGoldHoarder = 0; //Gold gained bonus
+	private int playerDamage = 1; //the damage the player does
 	
 	public enum traits{NONE,THIEF,WARRIOR,ARCHER};
 	public traits job;
@@ -53,7 +54,7 @@ public class Player {
 	
 	public int getAttackDamage(){
 		// This formula will be used to calculate the amount of damage will be done to a target //
-		return 0;
+		return playerDamage;
 	}
 	
 	public void compileInventory(GraphicsGrid g){
