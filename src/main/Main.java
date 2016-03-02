@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.swing.*;
 
 import graphics.*;
+import main.Player.traits;
 import windows.*;
 
 //need for music and sound
@@ -19,7 +20,7 @@ import windows.*;
 public class Main extends ConstructorClass {
 	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.NONE;
-	
+	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
 	
 	public Random rand = new Random();
@@ -27,12 +28,13 @@ public class Main extends ConstructorClass {
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
-	public void doInitialization(int width, int height) {
-		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
-		Registry.registerArmor();
-		Registry.registerMonsters();
-		Registry.registerWeapons();
-		Registry.registerImageResources();		
+	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550);
+	DefaultMenu mainMenu;
+	ShopWindow shopMenu;
+	FightLoopWindow fightLoopMenu;
+	InventoryWindow inventoryMenu;
+
+	public void doInitialization(int width, int height) {	
 	}
 
 	// All drawing is done here //
@@ -40,7 +42,18 @@ public class Main extends ConstructorClass {
 		Registry.g = g;
 		if(isFirstFrame){
 			isFirstFrame = false;
-			this.setSize(defaultWidth,defaultHeight);
+			Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
+			Registry.registerArmor();
+			Registry.registerMonsters();
+			Registry.registerWeapons();
+			Registry.registerImageResources();	
+			
+			this.setSize(defaultWidth,defaultHeight);			
+			
+			mainMenu = new DefaultMenu();
+			shopMenu = new ShopWindow();
+			fightLoopMenu = new FightLoopWindow();
+			inventoryMenu = new InventoryWindow();
 		}
 		
 		Registry.g.setColor(Color.lightGray);
@@ -49,21 +62,21 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
-			new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550).drawObject();
+			//mainMap.drawObject();
 			break;
 		case SHOP: 
-			new ShopWindow().draw();
+			shopMenu.draw();
 			break;
 			
 		case ADVENTURE: 
-			new FightLoopWindow().draw();
+			fightLoopMenu.draw();
 			break;
 		case INVENTORY: 
-			new InventoryWindow().draw();
+			inventoryMenu.draw();
 			break;
 		}
 		
-		new DefaultMenu().draw();
+		mainMenu.draw();
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
