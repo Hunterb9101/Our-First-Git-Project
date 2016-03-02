@@ -20,15 +20,6 @@ public class Armor extends InventoryItem{
 		this.cost = cost;
 		allArmor.add(this);
 	}
-	public static Armor getArmor(String name){
-		Armor a = allArmor.get(2);
-		for(int i = 0; i < allArmor.size(); i++){
-			if(allArmor.get(i).name.equalsIgnoreCase(name)){
-				a = allArmor.get(i);
-			}
-		}
-		return a;
-	}
 	public String parseText(){
 		String retString = name + " blocks " + defense + " damage";
 		return retString;
