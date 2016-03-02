@@ -2,9 +2,6 @@ package main;
 
 import java.util.ArrayList;
 
-import graphics.GraphicsGrid;
-import graphics.GraphicsGridEntry;
-
 public class Player {
 	public ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	public int lvl = 1; // Player's Current Level
@@ -54,21 +51,5 @@ public class Player {
 	public int getAttackDamage(){
 		// This formula will be used to calculate the amount of damage will be done to a target //
 		return 0;
-	}
-	
-	public void compileInventory(GraphicsGrid g){
-		try{
-			for(int i = 0; i<items.size(); i++){
-				System.out.println("Added " + items.get(i).name);
-				g.items[i] = new GraphicsGridEntry(items.get(i),g);
-			}
-			/*
-			for(int i = 0; i<g.items.length-items.size()-1; i++){
-				new GraphicsGridEntry(g);
-			}
-			*/
-		}catch(NullPointerException e){
-			System.out.println("EVEN MORE ERRORS!");
-		}
 	}
 }
