@@ -53,8 +53,14 @@ public class Main extends ConstructorClass {
 			this.setSize(defaultWidth,defaultHeight);
 			
 			gridTest = new GraphicsGrid(60,60,5,5);
-			
+			me.items.add(Weapon.allWeapons.get(0));
+			me.items.add(Armor.allArmor.get(1));
 			me.items.add(Weapon.allWeapons.get(2));
+			me.items.add(Weapon.allWeapons.get(3));
+			me.items.add(Weapon.allWeapons.get(4));
+			me.items.add(Weapon.allWeapons.get(5));
+			me.items.add(Weapon.allWeapons.get(6));
+			me.items.add(Weapon.allWeapons.get(7));
 			
 			me.compileInventory(gridTest);
 			
