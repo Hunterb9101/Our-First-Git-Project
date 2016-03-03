@@ -25,8 +25,6 @@ public class Main extends ConstructorClass {
 	
 	public Random rand = new Random();
 	
-	boolean itemBought = true;//will be deleted once shop is made
-	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
@@ -35,7 +33,9 @@ public class Main extends ConstructorClass {
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
 	InventoryWindow inventoryMenu;
-
+	
+	GraphicsGrid gridTest;
+	
 	public void doInitialization(int width, int height) {	
 	}
 
@@ -50,7 +50,13 @@ public class Main extends ConstructorClass {
 			Registry.registerWeapons();
 			Registry.registerImageResources();	
 			
-			this.setSize(defaultWidth,defaultHeight);			
+			this.setSize(defaultWidth,defaultHeight);
+			
+			gridTest = new GraphicsGrid(60,60,5,5);
+			
+			me.items.add(Weapon.allWeapons.get(2));
+			
+			me.compileInventory(gridTest);
 			
 			mainMenu = new DefaultMenu();
 			shopMenu = new ShopWindow();
@@ -64,13 +70,10 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
+			gridTest.drawObject();
 			//mainMap.drawObject();
 			break;
 		case SHOP: 
-			if(itemBought){
-				InventoryWindow.grid.addEntry(Weapon.getWeapon("Wood Sword"));
-			}
-			itemBought = false;
 			shopMenu.draw();
 			break;
 			

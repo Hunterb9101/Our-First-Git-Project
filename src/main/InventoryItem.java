@@ -12,5 +12,4 @@ public abstract class InventoryItem {
 		src = iSrc;
 		cost = iCost;
 	}
-
 }
