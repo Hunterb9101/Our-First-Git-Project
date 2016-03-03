@@ -12,7 +12,7 @@ public class Armor extends InventoryItem{
 	String name;
 	int defense;
 	int cost;
-	static Image src = Registry.imgRes.get("Flag");
+	static Image src = Registry.loadImage("res/Flag.png");
 	public Armor(String name, int defense, int cost) {
 		super(name,src,cost);
 		this.name = name;

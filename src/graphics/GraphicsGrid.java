@@ -41,9 +41,9 @@ public class GraphicsGrid extends GraphicsObject {
 					new GraphicsImage(items[c*rows + r].i.src,x + r*gridSizeX + xPadding*r,y+c*gridSizeY + yPadding*c, gridSizeX, gridSizeY).drawObject();
 				}catch(NullPointerException e){
 					new GraphicsPrimitives(Color.BLACK,x + r*gridSizeX + xPadding*r,y+c*gridSizeY + yPadding*c, gridSizeX, gridSizeY).drawObject();
-					//Registry.g.drawString(String.valueOf(c*rows + r+1),x + r*gridSizeX + xPadding*r+16, y+c*gridSizeY + yPadding*c+50);
+					Registry.g.drawString(String.valueOf(c*rows + r+1),x + r*gridSizeX + xPadding*r+16, y+c*gridSizeY + yPadding*c+50);
 				}
-				System.out.println(r + ", " + c);
+				//System.out.println(r + ", " + c);
 				//Basic Checking Mechanism (Displays Numbers and Rectangles)
 				
 			}
