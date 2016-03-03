@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Weapon extends InventoryItem{
 	private static ArrayList<Weapon> allWeapons = new ArrayList<Weapon>();
-	String name;
+	public String name;
 	int damage;
 	int cost;
-	static Image src = Registry.loadImage("res/Flag2.png");
+	public static Image src = Registry.loadImage("res/Flag2.png");
 	public Weapon(String name, int damage, int cost) {
 		super(name,src,cost);
 		

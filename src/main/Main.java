@@ -25,6 +25,8 @@ public class Main extends ConstructorClass {
 	
 	public Random rand = new Random();
 	
+	boolean itemBought = true;//will be deleted once shop is made
+	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
@@ -65,6 +67,10 @@ public class Main extends ConstructorClass {
 			//mainMap.drawObject();
 			break;
 		case SHOP: 
+			if(itemBought){
+				InventoryWindow.grid.addEntry(Weapon.getWeapon("Wood Sword"));
+			}
+			itemBought = false;
 			shopMenu.draw();
 			break;
 			

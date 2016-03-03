@@ -68,7 +68,7 @@ public abstract class GraphicsObject{
 	
 	public static void checkOnHover(int x, int y){
 		GraphicsObject obj;
-		for(int i = 0; i<allObjects.size(); i++){
+		for(int i = 0; i < allObjects.size(); i++){
 			obj = allObjects.get(i);
 			if((x > obj.x*xScalar && x < (obj.width+obj.x)*xScalar) && (y > obj.y*yScalar && y < (obj.y+obj.height)*yScalar)){
 				obj.onHover();
