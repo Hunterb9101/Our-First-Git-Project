@@ -1,4 +1,5 @@
 package main;
+
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,8 +19,8 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
-	public static menuItem currMenu = menuItem.NONE;
+	public static enum menuItem{NONE,STARTMENU,SHOP,ADVENTURE,INVENTORY};
+	public static menuItem currMenu = menuItem.STARTMENU;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
 	
@@ -33,7 +34,7 @@ public class Main extends ConstructorClass {
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
 	InventoryWindow inventoryMenu;
-	
+	StartMenuWindow startMenu;
 	GraphicsGrid gridTest;
 	
 	public void doInitialization(int width, int height) {	
@@ -62,6 +63,7 @@ public class Main extends ConstructorClass {
 			shopMenu = new ShopWindow();
 			fightLoopMenu = new FightLoopWindow();
 			inventoryMenu = new InventoryWindow();
+			startMenu = new StartMenuWindow();
 		}
 		
 		Registry.g.setColor(Color.lightGray);
@@ -70,22 +72,29 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
+			mainMenu.draw();
 			gridTest.drawObject();
 			//mainMap.drawObject();
 			break;
+			
+		case STARTMENU:
+			startMenu.draw();
+			break;
+			
 		case SHOP: 
+			mainMenu.draw();
 			shopMenu.draw();
 			break;
 			
 		case ADVENTURE: 
+			mainMenu.draw();
 			fightLoopMenu.draw();
 			break;
 		case INVENTORY: 
+			mainMenu.draw();
 			inventoryMenu.draw();
 			break;
 		}
-		
-		mainMenu.draw();
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
