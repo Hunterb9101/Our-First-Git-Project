@@ -50,6 +50,7 @@ public class Player {
 	
 	public void giveGold(int GoldGiven) {
 		// Will be used to give gold to the player (Will take into mind the skill sets //
+		//Above comment make no sense- Cody
 	}
 	
 	public int getAttackDamage(){

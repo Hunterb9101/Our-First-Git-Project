@@ -14,6 +14,8 @@ public class FightLoopWindow extends WindowItem {
 		System.out.println(m.name);
 		System.out.println(Main.me.getAttackDamage());
 		System.out.println(m.damage);
+		System.out.println(m.health);
+		
 	}
 
 }
