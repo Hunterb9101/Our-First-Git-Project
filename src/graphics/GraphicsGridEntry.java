@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import main.Armor;
 import main.InventoryItem;
+import main.Main;
 import main.Registry;
 import main.Weapon;
 
@@ -11,7 +12,8 @@ public class GraphicsGridEntry extends GraphicsObject{
 	public Image src;
 	public String text;
 	public InventoryItem i;
-	
+	private Armor armor = null;
+	private Weapon weapon = null;
 	private HoverBox descrip;
 	public GraphicsGridEntry(Image iSrc,int iX, int iY, String iText, GraphicsGrid parent){
 		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
@@ -24,6 +26,7 @@ public class GraphicsGridEntry extends GraphicsObject{
 	public GraphicsGridEntry(int iX, int iY, Weapon w, GraphicsGrid parent){
 		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		weapon = w;
 		src = w.src;
 		text = w.parseText();
 		descrip = new HoverBox(iX, iY, text);
@@ -32,6 +35,7 @@ public class GraphicsGridEntry extends GraphicsObject{
 	public GraphicsGridEntry(int iX, int iY, Armor a, GraphicsGrid parent){
 		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		armor = a;
 		src = a.src;
 		text = a.parseText();
 		descrip = new HoverBox(iX, iY, text);
@@ -46,6 +50,12 @@ public class GraphicsGridEntry extends GraphicsObject{
 	
 	public void onClick(){
 		//equip
+		if(weapon != null){
+			Main.me.equipedWeapon = weapon;
+		}
+		if(armor != null){
+			Main.me.equipedArmor = armor;
+		}
 	}
 	public void onHover(){
 		descrip.drawObject(); //Show Hover Box

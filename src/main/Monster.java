@@ -11,8 +11,10 @@ public class Monster {
 	int damage;
 	int health;
 	int lvl;
-
+	int attackSpeed = 1;
+	private Helper monsterHelper;
 	public Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable) {
+		monsterHelper = new Helper();
 		this.name = name;
 		this.xp = xp;
 		this.gold = gold;
@@ -23,6 +25,15 @@ public class Monster {
 
 	}
 
+	public boolean canAttack() {
+		if(monsterHelper.getElapsedTime() > 10/attackSpeed){
+			return true;
+		}
+		return false;
+	}
+	public void attacked(){
+		monsterHelper.start();
+	}
 	public static Monster pickMonster(Player a) {
 		Random rand = new Random();
 		Monster m = AllMonsters.get(rand.nextInt(AllMonsters.size()));
