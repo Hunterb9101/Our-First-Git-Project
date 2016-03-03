@@ -5,11 +5,11 @@ import java.util.Random;
 
 public class Monster {
 	static ArrayList<Monster> AllMonsters = new ArrayList<Monster>(10);
-	String name;
+	public String name;
 	int xp;
 	int gold;
-	int damage;
-	int health;
+	public int damage;
+	public int health;
 	int lvl;
 
 	public Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable) {
@@ -23,7 +23,7 @@ public class Monster {
 
 	}
 
-	public static Monster pickMonster(Player a) {
+	public static Monster pickMonster(Player a) {//Please note that as of now this is broken
 		Random rand = new Random();
 		Monster m = AllMonsters.get(rand.nextInt(AllMonsters.size()));
 		while (m.lvl > a.lvl) {
