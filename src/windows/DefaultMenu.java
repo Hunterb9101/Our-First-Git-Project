@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import graphics.GraphicsImage;
-import graphics.GraphicsGridEntry;
 import graphics.GraphicsPrimitives;
 import main.Main;
 import main.Registry;
