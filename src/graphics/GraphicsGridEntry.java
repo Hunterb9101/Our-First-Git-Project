@@ -1,15 +1,10 @@
 package graphics;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.TextField;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-
 import main.Armor;
 import main.InventoryItem;
+import main.Main;
 import main.Registry;
 import main.Weapon;
 
@@ -17,45 +12,50 @@ public class GraphicsGridEntry extends GraphicsObject{
 	public Image src;
 	public String text;
 	public InventoryItem i;
-	
+	private Armor armor = null;
+	private Weapon weapon = null;
 	private HoverBox descrip;
 	public GraphicsGridEntry(Image iSrc,int iX, int iY, String iText, GraphicsGrid parent){
-		super(iX,iY,parent.gridSizeX,parent.gridSizeY);
+		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
+		super(iX, iY, parent.itemWidth, parent.itemHeight);
 		src = iSrc;
 		text = iText;
 		descrip = new HoverBox(iX, iY, text);
 	}
 	
-	public GraphicsGridEntry(Image iSrc,int iX, int iY, Weapon w, GraphicsGrid parent){
-		super(iX,iY,parent.gridSizeX,parent.gridSizeY);
-		src = iSrc;
+	public GraphicsGridEntry(int iX, int iY, Weapon w, GraphicsGrid parent){
+		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
+		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		weapon = w;
+		src = w.src;
 		text = w.parseText();
 		descrip = new HoverBox(iX, iY, text);
 	}
 	
-	public GraphicsGridEntry(Image iSrc,int iX, int iY, Armor a, GraphicsGrid parent){
-		super(iX,iY,parent.gridSizeX,parent.gridSizeY);
-		src = iSrc;
+	public GraphicsGridEntry(int iX, int iY, Armor a, GraphicsGrid parent){
+		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
+		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		armor = a;
+		src = a.src;
 		text = a.parseText();
 		descrip = new HoverBox(iX, iY, text);
 	}
 	
-	public GraphicsGridEntry(InventoryItem i, GraphicsGrid parent){
-		super(0,0,parent.gridSizeX,parent.gridSizeY);
-		this.i = i;
-	}
-	
-	public GraphicsGridEntry(GraphicsGrid parent){
-		super(0,0,parent.gridSizeX,parent.gridSizeY);
-		this.i = null;
-	}
-	
 	public void drawObject(){
+		//SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		Registry.g.drawImage(src,(int)(x*xScalar),(int)(y*yScalar),(int)(width*xScalar),(int)(height*yScalar),null);
+		Registry.g.setColor(Color.black);
+		Registry.g.drawRect(x, y, width, height);//adds outline to the image
 	}
 	
 	public void onClick(){
 		//equip
+		if(weapon != null){
+			Main.me.equipedWeapon = weapon;
+		}
+		if(armor != null){
+			Main.me.equipedArmor = armor;
+		}
 	}
 	public void onHover(){
 		descrip.drawObject(); //Show Hover Box

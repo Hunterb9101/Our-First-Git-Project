@@ -45,17 +45,17 @@ public class Registry {
 		imgRes.put("Grid", loadImage("res/Grid.png"));
 	}
 	public static void registerWeapons(){
-		new Weapon("Iron sword", 6, 37);
-		new Weapon("Wood sword", 3, 17);
-		new Weapon("Steel Sword", 11, 78);
-		new Weapon("Iron BattleAxe", 8, 48);
-		new Weapon("Steel BattleAxe", 14, 83);
-		new Weapon("Iron Dagger", 3, 24);
-		new Weapon("Steel Dagger", 7, 42);
-		new Weapon("Long bow", 4, 37);
-		new Weapon("Compound bow", 6, 79);
-		new Weapon("enchanted sword", 16, 121);
-		new Weapon("Mythical sword", 18, 162);
+		new Weapon("Iron sword", 6, 37, 5);
+		new Weapon("Wood sword", 3, 17, 7);
+		new Weapon("Steel Sword", 11, 78, 6);
+		new Weapon("Iron BattleAxe", 8, 48, 3);
+		new Weapon("Steel BattleAxe", 14, 83, 4);
+		new Weapon("Iron Dagger", 3, 24, 7);
+		new Weapon("Steel Dagger", 7, 42, 8);
+		new Weapon("Long bow", 4, 37, 1);
+		new Weapon("Compound bow", 6, 79, 1);
+		new Weapon("enchanted sword", 16, 121, 7);
+		new Weapon("Mythical sword", 18, 162, 6);
 	}
 
 	//Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable)
