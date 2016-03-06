@@ -20,8 +20,10 @@ public class GraphicsGrid extends GraphicsObject {
 	static int itemWidth = 90;
 	static int itemHeight = 90;
 	public Main.menuItem parentMenu;
+
 	public GraphicsGrid(int iX, int iY, int rows, int columns, Main.menuItem parentMenu) {
-		//x start, y start, number of rows in grid, number of columns in grid, what menu it is in for hover purposes
+		// x start, y start, number of rows in grid, number of columns in grid,
+		// what menu it is in for hover purposes
 		super(iX, iY, (rows * itemWidth) + ((rows - 1) * xPadding),
 				(columns * itemHeight) + ((columns - 1) * yPadding));
 		this.parentMenu = parentMenu;
@@ -36,11 +38,12 @@ public class GraphicsGrid extends GraphicsObject {
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
 				try {
-					items[c * rows + r].drawObject();//draws the items
+					items[c * rows + r].drawObject();// draws the items
 				} catch (NullPointerException e) {
 					Registry.g.setColor(Color.BLACK);
 					Registry.g.fillRect(x + r * itemWidth + xPadding * r, y + c * itemHeight + yPadding * c, itemWidth,
-							itemHeight);//makes black squares where there is no items
+							itemHeight);// makes black squares where there is no
+										// items
 				}
 			}
 		}
@@ -72,13 +75,13 @@ public class GraphicsGrid extends GraphicsObject {
 	public void addEntry(Weapon w) {
 		System.out.println("Item added " + w.name);
 		boolean needsEntry = true;
-		for (int r = 0; r < rows; r++) {
-			for (int c = 0; c < columns; c++) {
+		for (int c = 0; c < columns; c++) {
+			for (int r = 0; r < rows; r++) {
 				try {
 					// do nothing because stuff exists here
 					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;// triggers
 																					// catch
-					
+
 				} catch (NullPointerException e) {
 					if (needsEntry) {
 						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
