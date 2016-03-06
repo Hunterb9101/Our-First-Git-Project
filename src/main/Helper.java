@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Helper {
 	private long startTime;
 	private long elapsedTime;
-	
+	private long stopWatchTime;
 	public Helper(){
 		startTime = System.currentTimeMillis(); //starts the timer
 	}
@@ -21,7 +21,7 @@ public class Helper {
 		elapsedTime = System.currentTimeMillis() - startTime;
 		return elapsedTime;
 	}
-	
+
 	public static void printlnTextSlowly(String text){
 		try{
 			for(int i = 0; i<text.length(); i++){
