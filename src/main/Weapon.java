@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 public class Weapon extends InventoryItem{
-	private static ArrayList<Weapon> allWeapons = new ArrayList<Weapon>();
+	public static ArrayList<Weapon> allWeapons = new ArrayList<Weapon>();
 	public String name;
 	int damage;
 	int cost;

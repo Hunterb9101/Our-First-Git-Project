@@ -3,12 +3,12 @@ package graphics;
 import java.awt.Color;
 import java.awt.Image;
 import main.Armor;
+import main.Main;
 import main.Registry;
 import main.Weapon;
 
 public class GraphicsGrid extends GraphicsObject {
 	public GraphicsGridEntry[] items = new GraphicsGridEntry[25];
-	private int index = 0;
 	public int rows = 5;
 	public int columns = 5;
 	public static int xPadding = 3;
@@ -19,10 +19,12 @@ public class GraphicsGrid extends GraphicsObject {
 
 	static int itemWidth = 90;
 	static int itemHeight = 90;
-
-	public GraphicsGrid(int iX, int iY, int rows, int columns) {
+	public Main.menuItem parentMenu;
+	public GraphicsGrid(int iX, int iY, int rows, int columns, Main.menuItem parentMenu) {
+		//x start, y start, number of rows in grid, number of columns in grid, what menu it is in for hover purposes
 		super(iX, iY, (rows * itemWidth) + ((rows - 1) * xPadding),
 				(columns * itemHeight) + ((columns - 1) * yPadding));
+		this.parentMenu = parentMenu;
 		x = iX;
 		y = iY;
 		this.rows = rows;
@@ -57,8 +59,7 @@ public class GraphicsGrid extends GraphicsObject {
 						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
 								y + c * itemHeight + yPadding * c, a, this);
 						// makes a grid entry with the correct size
-						items[index] = entry;
-						index++;
+						items[c * rows + r] = entry;
 						// adds it to the array, and moves index up 1 so we
 						// don't add another entry to the same spot :(
 						needsEntry = false;
@@ -77,13 +78,13 @@ public class GraphicsGrid extends GraphicsObject {
 					// do nothing because stuff exists here
 					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;// triggers
 																					// catch
+					
 				} catch (NullPointerException e) {
 					if (needsEntry) {
 						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
 								y + c * itemHeight + yPadding * c, w, this);
 						// makes a grid entry with the correct size
-						items[index] = entry;
-						index++;
+						items[c * rows + r] = entry;
 						// adds it to the array, and moves index up 1 so we
 						// don't add another entry to the same spot :(
 						needsEntry = false;
@@ -108,8 +109,7 @@ public class GraphicsGrid extends GraphicsObject {
 						GraphicsGridEntry entry = new GraphicsGridEntry(src, x + r * itemWidth + xPadding * r,
 								y + c * itemHeight + yPadding * c, text, this);
 						// makes a grid entry at the right spot
-						items[index] = entry;
-						index++;
+						items[c * rows + r] = entry;
 						needsEntry = false;
 					}
 				}

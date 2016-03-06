@@ -68,7 +68,9 @@ public class Main extends ConstructorClass {
 			break;
 		case SHOP: 
 			if(itemBought){
-				InventoryWindow.grid.addEntry(Weapon.getWeapon("Wood Sword"));
+				for(int i = 0; i < 10; i++){
+					InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
+				}
 			}
 			itemBought = false;
 			shopMenu.draw();

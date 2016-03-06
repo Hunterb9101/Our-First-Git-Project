@@ -10,7 +10,7 @@ import main.Main;
 import main.Registry;
 
 public class InventoryWindow extends WindowItem {
-	public static GraphicsGrid grid = new GraphicsGrid(50, 105, 5, 5);
+	public static GraphicsGrid grid = new GraphicsGrid(50, 105, 5, 5, Main.menuItem.INVENTORY);
 	//GraphicsGridEntry flag = new GraphicsGridEntry(Registry.imgRes.get("Flag"), 400, 100, "Test", grid);//test inventory
 	//GraphicsGridEntry flag2 = new GraphicsGridEntry(Registry.imgRes.get("Flag2"), 455, 100, "Better Flag E!", grid);
 	
