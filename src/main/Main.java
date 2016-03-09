@@ -18,8 +18,8 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
-	public static menuItem currMenu = menuItem.NONE;
+	public static enum menuItem{NONE,START,SHOP,ADVENTURE,INVENTORY};
+	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
 	
@@ -35,6 +35,7 @@ public class Main extends ConstructorClass {
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
 	InventoryWindow inventoryMenu;
+	StartMenuWindow startMenuWindow;
 
 	public void doInitialization(int width, int height) {	
 	}
@@ -56,6 +57,7 @@ public class Main extends ConstructorClass {
 			shopMenu = new ShopWindow();
 			fightLoopMenu = new FightLoopWindow();
 			inventoryMenu = new InventoryWindow();
+			startMenuWindow = new StartMenuWindow();
 		}
 		
 		Registry.g.setColor(Color.lightGray);
@@ -65,6 +67,10 @@ public class Main extends ConstructorClass {
 		switch(currMenu){
 		case NONE:
 			//mainMap.drawObject();
+			mainMenu.draw();
+			break;
+		case START:
+			startMenuWindow.draw();
 			break;
 		case SHOP: 
 			if(itemBought){
@@ -74,17 +80,19 @@ public class Main extends ConstructorClass {
 			}
 			itemBought = false;
 			shopMenu.draw();
+			mainMenu.draw();
 			break;
 			
 		case ADVENTURE: 
 			fightLoopMenu.draw();
+			mainMenu.draw();
 			break;
 		case INVENTORY: 
 			inventoryMenu.draw();
+			mainMenu.draw();
 			break;
 		}
 		
-		mainMenu.draw();
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 
