@@ -25,24 +25,18 @@ public class GraphicsGridEntry extends GraphicsObject {
 		text = iText;
 		descrip = new HoverBox(iX, iY, text);
 	}
-
-	public GraphicsGridEntry(int iX, int iY, Weapon w, GraphicsGrid parent) {
+	public GraphicsGridEntry(int iX, int iY, InventoryItem i, GraphicsGrid parent) {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		super(iX, iY, parent.itemWidth, parent.itemHeight);
 		this.parent = parent;
-		weapon = w;
-		src = w.src;
-		text = w.parseText();
-		descrip = new HoverBox(iX, iY, text);
-	}
-
-	public GraphicsGridEntry(int iX, int iY, Armor a, GraphicsGrid parent) {
-		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
-		super(iX, iY, parent.itemWidth, parent.itemHeight);
-		this.parent = parent;
-		armor = a;
-		src = a.src;
-		text = a.parseText();
+		if(i.isWeapon()){
+			weapon = i.getWeapon();
+		}
+		else if(i.isArmor()){
+			armor = i.getArmor();
+		}
+		src = i.src;
+		text = i.parseText();
 		descrip = new HoverBox(iX, iY, text);
 	}
 

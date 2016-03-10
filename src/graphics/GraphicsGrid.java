@@ -3,6 +3,7 @@ package graphics;
 import java.awt.Color;
 import java.awt.Image;
 import main.Armor;
+import main.InventoryItem;
 import main.Main;
 import main.Registry;
 import main.Weapon;
@@ -71,7 +72,31 @@ public class GraphicsGrid extends GraphicsObject {
 			}
 		}
 	}
+	public void addEntry(InventoryItem i) {
+		System.out.println("Item added " + i.name);
+		boolean needsEntry = true;
+		for (int c = 0; c < columns; c++) {
+			for (int r = 0; r < rows; r++) {
+				try {
+					// do nothing because stuff exists here
+					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;// triggers
+																					// catch
 
+				} catch (NullPointerException e) {
+					if (needsEntry) {
+						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
+								y + c * itemHeight + yPadding * c, i, this);
+						// makes a grid entry with the correct size
+						items[c * rows + r] = entry;
+						// adds it to the array, and moves index up 1 so we
+						// don't add another entry to the same spot :(
+						needsEntry = false;
+					}
+				}
+				// Basic Checking Mechanism (Displays Numbers and Rectangles)
+			}
+		}
+	}
 	public void addEntry(Weapon w) {
 		System.out.println("Item added " + w.name);
 		boolean needsEntry = true;
