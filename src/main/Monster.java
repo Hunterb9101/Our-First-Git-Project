@@ -7,7 +7,7 @@ public class Monster {
 	static ArrayList<Monster> AllMonsters = new ArrayList<Monster>(10);
 	public String name;
 	int xp;
-	int gold;
+	public int gold;
 	public int damage;
 	public 	int health;
 	int lvl;

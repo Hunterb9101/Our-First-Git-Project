@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Armor extends InventoryItem{
 	public static ArrayList<Armor> allArmor = new ArrayList<Armor>();
 	public String name;
-	int defense;
+	public int defense;
 	int cost;
 	public static Image src = Registry.imgRes.get("Flag");
 	public Armor(String name, int defense, int cost) {
