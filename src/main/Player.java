@@ -10,7 +10,7 @@ public class Player {
 	public int gold = 0;
 
 	public int hp = 0;
-	private int maxHp = 0; // !SHOULD NOT BE EDITED! //
+	public int maxHp = 0; // !SHOULD NOT BE EDITED! //
 
 	public Armor equipedArmor;
 	public Weapon equipedWeapon;
@@ -59,7 +59,7 @@ public class Player {
 
 	public int calculateMaxHP() {
 		// Calculate the max hitpoints based off of armor, skills, etc. //
-		return 0;
+		return maxHp;
 	}
 
 	public void giveGold(int GoldGiven) {
