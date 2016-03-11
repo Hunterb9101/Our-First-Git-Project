@@ -9,8 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-import javax.swing.*;
-
 import graphics.*;
 import main.Player.traits;
 import windows.*;
@@ -30,7 +28,7 @@ public class Main extends ConstructorClass {
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
-	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550);
+	MainWindow mainWindow;
 	DefaultMenu mainMenu;
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
@@ -54,6 +52,7 @@ public class Main extends ConstructorClass {
 			this.setSize(defaultWidth,defaultHeight);			
 			
 			mainMenu = new DefaultMenu();
+			mainWindow = new MainWindow();
 			shopMenu = new ShopWindow();
 			fightLoopMenu = new FightLoopWindow();
 			inventoryMenu = new InventoryWindow();
@@ -66,7 +65,7 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
-			//mainMap.drawObject();
+			mainWindow.draw();
 			mainMenu.draw();
 			break;
 		case START:
