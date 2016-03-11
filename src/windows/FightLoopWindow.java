@@ -8,9 +8,9 @@ import main.Registry;
 
 public class FightLoopWindow extends WindowItem {
 	
+	public int money;
+	
 	public void draw() {
-		
-		
 		Monster m = Monster.pickMonster(Main.me);
 		System.out.println(m.name);
 		System.out.println(Main.me.getAttackDamage());
@@ -30,6 +30,7 @@ public class FightLoopWindow extends WindowItem {
 		
 		if(m.health<= 0){
 			System.out.println("Monster is dead you Win!");
+			Main.me.giveGold(m.gold);
 		}
 		else if(Main.me.maxHp<=0){
 			System.out.println("You died you lose!");
