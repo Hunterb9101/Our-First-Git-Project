@@ -35,6 +35,7 @@ public class GraphicsGridEntry extends GraphicsObject {
 		else if(i.isArmor()){
 			armor = i.getArmor();
 		}
+		this.i = i;
 		src = i.src;
 		text = i.parseText();
 		descrip = new HoverBox(iX, iY, text);
@@ -50,7 +51,8 @@ public class GraphicsGridEntry extends GraphicsObject {
 
 	public void onClick() {
 		// equip
-		if (parent.parentMenu.equals(Main.currMenu)) {//checks that we are in correct menu before doing on click
+		if (parent.parentMenu.equals(Main.currMenu)){//checks that we are in correct menu before doing on click
+			System.out.println("Equiping " + i.name);
 			if (weapon != null) {
 				Main.me.equipedWeapon = weapon;
 			}

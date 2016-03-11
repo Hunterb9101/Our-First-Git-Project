@@ -52,17 +52,20 @@ public class GraphicsGrid extends GraphicsObject {
 
 	public void addEntry(InventoryItem i) {
 		System.out.println("Item added " + i.name);
+		boolean needsEntry = true;
 		for (int c = 0; c < columns; c++) {
 			for (int r = 0; r < rows; r++) {
 				// do nothing because stuff exists here
 				if (items[c * rows + r] == null) {
-					GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
-							y + c * itemHeight + yPadding * c, i, this);
-					// makes a grid entry with the correct size
-					items[c * rows + r] = entry;
-					// adds it to the array, and moves index up 1 so we
-					// don't add another entry to the same spot :(
-
+					if (needsEntry) {
+						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
+								y + c * itemHeight + yPadding * c, i, this);
+						// makes a grid entry with the correct size
+						items[c * rows + r] = entry;
+						// adds it to the array, and moves index up 1 so we
+						// don't add another entry to the same spot :(
+						needsEntry = false;
+					}
 				}
 				// Basic Checking Mechanism (Displays Numbers and Rectangles)
 			}
@@ -70,16 +73,18 @@ public class GraphicsGrid extends GraphicsObject {
 	}
 
 	public void addEntry(Image src, String text) {
+		boolean needsEntry = true;
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
-					// do nothing
-					if(items[c * rows + r] == null){
+				if (items[c * rows + r] == null) {
+					if (needsEntry) {
 						GraphicsGridEntry entry = new GraphicsGridEntry(src, x + r * itemWidth + xPadding * r,
 								y + c * itemHeight + yPadding * c, text, this);
 						// makes a grid entry at the right spot
 						items[c * rows + r] = entry;
+						needsEntry = false;
 					}
-				
+				}
 				// Basic Checking Mechanism (Displays Numbers and Rectangles)
 			}
 		}
