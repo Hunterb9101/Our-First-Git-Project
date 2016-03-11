@@ -1,5 +1,4 @@
 package main;
-
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,12 +18,14 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,STARTMENU,SHOP,ADVENTURE,INVENTORY};
-	public static menuItem currMenu = menuItem.STARTMENU;
+	public static enum menuItem{NONE,START,SHOP,ADVENTURE,INVENTORY};
+	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
 	
 	public Random rand = new Random();
+	
+	boolean itemBought = true;//will be deleted once shop is made
 	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
@@ -34,9 +35,8 @@ public class Main extends ConstructorClass {
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
 	InventoryWindow inventoryMenu;
-	StartMenuWindow startMenu;
-	GraphicsGrid gridTest;
-	
+	StartMenuWindow startMenuWindow;
+
 	public void doInitialization(int width, int height) {	
 	}
 
@@ -51,25 +51,13 @@ public class Main extends ConstructorClass {
 			Registry.registerWeapons();
 			Registry.registerImageResources();	
 			
-			this.setSize(defaultWidth,defaultHeight);
-			
-			gridTest = new GraphicsGrid(60,60,5,5);
-			me.items.add(Weapon.allWeapons.get(0));
-			me.items.add(Armor.allArmor.get(1));
-			me.items.add(Weapon.allWeapons.get(2));
-			me.items.add(Weapon.allWeapons.get(3));
-			me.items.add(Weapon.allWeapons.get(4));
-			me.items.add(Weapon.allWeapons.get(5));
-			me.items.add(Weapon.allWeapons.get(6));
-			me.items.add(Weapon.allWeapons.get(7));
-			
-			me.compileInventory(gridTest);
+			this.setSize(defaultWidth,defaultHeight);			
 			
 			mainMenu = new DefaultMenu();
 			shopMenu = new ShopWindow();
 			fightLoopMenu = new FightLoopWindow();
 			inventoryMenu = new InventoryWindow();
-			startMenu = new StartMenuWindow();
+			startMenuWindow = new StartMenuWindow();
 		}
 		
 		Registry.g.setColor(Color.lightGray);
@@ -78,29 +66,33 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
-			mainMenu.draw();
-			gridTest.drawObject();
 			//mainMap.drawObject();
-			break;
-			
-		case STARTMENU:
-			startMenu.draw();
-			break;
-			
-		case SHOP: 
 			mainMenu.draw();
+			break;
+		case START:
+			startMenuWindow.draw();
+			break;
+		case SHOP: 
+			if(itemBought){
+				for(int i = 0; i < 10; i++){
+					InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
+				}
+			}
+			itemBought = false;
 			shopMenu.draw();
+			mainMenu.draw();
 			break;
 			
 		case ADVENTURE: 
-			mainMenu.draw();
 			fightLoopMenu.draw();
+			mainMenu.draw();
 			break;
 		case INVENTORY: 
-			mainMenu.draw();
 			inventoryMenu.draw();
+			mainMenu.draw();
 			break;
 		}
+		
 		
 		GraphicsObject.checkOnHover(
 				(int)(MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().getX()), 

@@ -7,12 +7,14 @@ public class Monster {
 	static ArrayList<Monster> AllMonsters = new ArrayList<Monster>(10);
 	public String name;
 	int xp;
-	int gold;
+	public int gold;
 	public int damage;
-	public int health;
+	public 	int health;
 	int lvl;
-
+	int attackSpeed = 1;
+	private Helper monsterHelper;
 	public Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable) {
+		monsterHelper = new Helper();
 		this.name = name;
 		this.xp = xp;
 		this.gold = gold;
@@ -23,7 +25,16 @@ public class Monster {
 
 	}
 
-	public static Monster pickMonster(Player a) {//Please note that as of now this is broken
+	public boolean canAttack() {
+		if(monsterHelper.getElapsedTime() > 10/attackSpeed){
+			return true;
+		}
+		return false;
+	}
+	public void attacked(){
+		monsterHelper.start();
+	}
+	public static Monster pickMonster(Player a) {
 		Random rand = new Random();
 		Monster m = AllMonsters.get(rand.nextInt(AllMonsters.size()));
 		while (m.lvl > a.lvl) {
