@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Image;
+
+import main.InventoryItem;
 import main.Armor;
 import main.Main;
 import main.Registry;
@@ -25,7 +27,7 @@ public class GraphicsGrid extends GraphicsObject {
 		// x start, y start, number of rows in grid, number of columns in grid,
 		// what menu it is in for hover purposes
 		super(iX, iY, (rows * itemWidth) + ((rows - 1) * xPadding),
-				(columns * itemHeight) + ((columns - 1) * yPadding));
+				(columns * itemHeight) + ((columns - 1) * yPadding), parentMenu);
 		this.parentMenu = parentMenu;
 		x = iX;
 		y = iY;
@@ -49,43 +51,16 @@ public class GraphicsGrid extends GraphicsObject {
 		}
 	}
 
-	public void addEntry(Armor a) {
-		System.out.println("Item added " + a.name);
-		boolean needsEntry = true;
-		for (int r = 0; r < rows; r++) {
-			for (int c = 0; c < columns; c++) {
-				try {
-					// do nothing because stuff exists here
-					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;
-				} catch (NullPointerException e) {
-					if (needsEntry) {
-						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
-								y + c * itemHeight + yPadding * c, a, this);
-						// makes a grid entry with the correct size
-						items[c * rows + r] = entry;
-						// adds it to the array, and moves index up 1 so we
-						// don't add another entry to the same spot :(
-						needsEntry = false;
-					}
-				}
-			}
-		}
-	}
-
-	public void addEntry(Weapon w) {
-		System.out.println("Item added " + w.name);
+	public void addEntry(InventoryItem i) {
+		System.out.println("Item added " + i.name);
 		boolean needsEntry = true;
 		for (int c = 0; c < columns; c++) {
 			for (int r = 0; r < rows; r++) {
-				try {
-					// do nothing because stuff exists here
-					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;// triggers
-																					// catch
-
-				} catch (NullPointerException e) {
+				// do nothing because stuff exists here
+				if (items[c * rows + r] == null) {
 					if (needsEntry) {
 						GraphicsGridEntry entry = new GraphicsGridEntry(x + r * itemWidth + xPadding * r,
-								y + c * itemHeight + yPadding * c, w, this);
+								y + c * itemHeight + yPadding * c, i, this);
 						// makes a grid entry with the correct size
 						items[c * rows + r] = entry;
 						// adds it to the array, and moves index up 1 so we
@@ -102,12 +77,7 @@ public class GraphicsGrid extends GraphicsObject {
 		boolean needsEntry = true;
 		for (int r = 0; r < rows; r++) {
 			for (int c = 0; c < columns; c++) {
-				try {
-					// do nothing
-					items[c * rows + r].freeMotion = items[c * rows + r].freeMotion;// triggers
-																					// the
-																					// catch
-				} catch (NullPointerException e) {
+				if (items[c * rows + r] == null) {
 					if (needsEntry) {
 						GraphicsGridEntry entry = new GraphicsGridEntry(src, x + r * itemWidth + xPadding * r,
 								y + c * itemHeight + yPadding * c, text, this);

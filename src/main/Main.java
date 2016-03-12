@@ -16,7 +16,7 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,START,SHOP,ADVENTURE,INVENTORY};
+	public static enum menuItem{NONE,START, DEFAULT, SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
@@ -36,28 +36,26 @@ public class Main extends ConstructorClass {
 	StartMenuWindow startMenuWindow;
 
 	public void doInitialization(int width, int height) {	
+		System.out.println("Doing initialization");
+		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
+		Registry.registerArmor();
+		Registry.registerMonsters();
+		Registry.registerWeapons();
+		Registry.registerImageResources();	
+		
+		this.setSize(defaultWidth,defaultHeight);			
+		
+		mainMenu = new DefaultMenu();
+		mainWindow = new MainWindow();
+		shopMenu = new ShopWindow();
+		fightLoopMenu = new FightLoopWindow();
+		inventoryMenu = new InventoryWindow();
+		startMenuWindow = new StartMenuWindow();
 	}
 
 	// All drawing is done here //
 	synchronized public void drawFrame(Graphics g, int width, int height) {
 		Registry.g = g;
-		if(isFirstFrame){
-			isFirstFrame = false;
-			Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
-			Registry.registerArmor();
-			Registry.registerMonsters();
-			Registry.registerWeapons();
-			Registry.registerImageResources();	
-			
-			this.setSize(defaultWidth,defaultHeight);			
-			
-			mainMenu = new DefaultMenu();
-			mainWindow = new MainWindow();
-			shopMenu = new ShopWindow();
-			fightLoopMenu = new FightLoopWindow();
-			inventoryMenu = new InventoryWindow();
-			startMenuWindow = new StartMenuWindow();
-		}
 		
 		Registry.g.setColor(Color.lightGray);
 		GraphicsObject.setDimens(getSize().width, getSize().height);
