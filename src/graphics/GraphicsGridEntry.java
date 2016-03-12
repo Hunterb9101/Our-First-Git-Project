@@ -2,8 +2,9 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Image;
-import main.Armor;
+
 import main.InventoryItem;
+import main.Armor;
 import main.Main;
 import main.Registry;
 import main.Weapon;
@@ -19,31 +20,26 @@ public class GraphicsGridEntry extends GraphicsObject {
 
 	public GraphicsGridEntry(Image iSrc, int iX, int iY, String iText, GraphicsGrid parent) {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
-		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		super(iX, iY, parent.itemWidth, parent.itemHeight, parent.parentMenu);
 		this.parent = parent;
 		src = iSrc;
 		text = iText;
-		descrip = new HoverBox(iX, iY, text);
+		descrip = new HoverBox(iX, iY, text, parent.parentMenu);
 	}
-
-	public GraphicsGridEntry(int iX, int iY, Weapon w, GraphicsGrid parent) {
+	public GraphicsGridEntry(int iX, int iY, InventoryItem i, GraphicsGrid parent) {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
-		super(iX, iY, parent.itemWidth, parent.itemHeight);
+		super(iX, iY, parent.itemWidth, parent.itemHeight, parent.parentMenu);
 		this.parent = parent;
-		weapon = w;
-		src = w.src;
-		text = w.parseText();
-		descrip = new HoverBox(iX, iY, text);
-	}
-
-	public GraphicsGridEntry(int iX, int iY, Armor a, GraphicsGrid parent) {
-		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
-		super(iX, iY, parent.itemWidth, parent.itemHeight);
-		this.parent = parent;
-		armor = a;
-		src = a.src;
-		text = a.parseText();
-		descrip = new HoverBox(iX, iY, text);
+		if(i.isWeapon()){
+			weapon = i.getWeapon();
+		}
+		else if(i.isArmor()){
+			armor = i.getArmor();
+		}
+		this.i = i;
+		src = i.src;
+		text = i.parseText();
+		descrip = new HoverBox(iX, iY, text, parent.parentMenu);
 	}
 
 	public void drawObject() {
@@ -56,7 +52,8 @@ public class GraphicsGridEntry extends GraphicsObject {
 
 	public void onClick() {
 		// equip
-		if (parent.parentMenu.equals(Main.currMenu)) {//checks that we are in correct menu before doing on click
+		if (parent.parentMenu.equals(Main.currMenu)){//checks that we are in correct menu before doing on click
+			System.out.println("Equiping " + i.name);
 			if (weapon != null) {
 				Main.me.equipedWeapon = weapon;
 			}
