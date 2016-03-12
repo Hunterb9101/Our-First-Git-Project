@@ -5,14 +5,16 @@ import java.util.Random;
 
 public class Monster {
 	static ArrayList<Monster> AllMonsters = new ArrayList<Monster>(10);
-	String name;
+	public String name;
 	int xp;
-	int gold;
-	int damage;
-	int health;
+	public int gold;
+	public int damage;
+	public 	int health;
 	int lvl;
-
+	int attackSpeed = 1;
+	private Helper monsterHelper;
 	public Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable) {
+		monsterHelper = new Helper();
 		this.name = name;
 		this.xp = xp;
 		this.gold = gold;
@@ -23,6 +25,15 @@ public class Monster {
 
 	}
 
+	public boolean canAttack() {
+		if(monsterHelper.getElapsedTime() > 10/attackSpeed){
+			return true;
+		}
+		return false;
+	}
+	public void attacked(){
+		monsterHelper.start();
+	}
 	public static Monster pickMonster(Player a) {
 		Random rand = new Random();
 		Monster m = AllMonsters.get(rand.nextInt(AllMonsters.size()));

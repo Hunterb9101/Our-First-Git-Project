@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import javax.imageio.ImageIO;
 
 public class Registry {
 	public static HashMap<String,Image> imgRes = new HashMap<String,Image>();
-	
+	public static Graphics g;
 	public static Helper h;//Helper pulls out of Registry, so we have 1 Helper(), therefore
 	//runtime not reset constantly, and it is public so we can pull it from other classes
 	public static void initHelper(){
@@ -41,19 +42,20 @@ public class Registry {
 		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
 		imgRes.put("Flag", loadImage("res/Flag.png"));//test image
 		imgRes.put("Flag2", loadImage("res/Flag2.png"));
+		imgRes.put("Grid", loadImage("res/Grid.png"));
 	}
 	public static void registerWeapons(){
-		new Weapon("Iron sword", 6, 37);
-		new Weapon("Wood sword", 3, 17);
-		new Weapon("Steel Sword", 11, 78);
-		new Weapon("Iron BattleAxe", 8, 48);
-		new Weapon("Steel BattleAxe", 14, 83);
-		new Weapon("Iron Dagger", 3, 24);
-		new Weapon("Steel Dagger", 7, 42);
-		new Weapon("Long bow", 4, 37);
-		new Weapon("Compound bow", 6, 79);
-		new Weapon("enchanted sword", 16, 121);
-		new Weapon("Mythical sword", 18, 162);
+		new Weapon("Iron sword", 6, 37, 5);
+		new Weapon("Wood sword", 3, 17, 7);
+		new Weapon("Steel Sword", 11, 78, 6);
+		new Weapon("Iron BattleAxe", 8, 48, 3);
+		new Weapon("Steel BattleAxe", 14, 83, 4);
+		new Weapon("Iron Dagger", 3, 24, 7);
+		new Weapon("Steel Dagger", 7, 42, 8);
+		new Weapon("Long bow", 4, 37, 1);
+		new Weapon("Compound bow", 6, 79, 1);
+		new Weapon("enchanted sword", 16, 121, 7);
+		new Weapon("Mythical sword", 18, 162, 6);
 	}
 
 	//Monster(String name, int xp, int gold, int damage, int health, int lvlAvailable)

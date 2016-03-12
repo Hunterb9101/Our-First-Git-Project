@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import main.Main;
+import main.Registry;
+
 public class HoverBox extends GraphicsObject{
 	Image src;
 	String text;
@@ -16,29 +19,31 @@ public class HoverBox extends GraphicsObject{
 	Color fgColor = new Color(255,255,255);
 	Font f = new Font("SanSerif", Font.PLAIN, 18);
 	
-	public HoverBox(int iX, int iY, String iText){
-		super(iX,iY,0,0);
+	public HoverBox(int iX, int iY, String iText, Main.menuItem parentMenu){
+		super(iX,iY,0,0, parentMenu);
 		text = iText;
 		x = iX;
 		y = iY;
 	}
 	
-	public void drawObject(Graphics g) {
-		g.setFont(f);
-		this.width = g.getFontMetrics(f).stringWidth(text);
-		this.height = g.getFontMetrics(f).getHeight();
+	public void drawObject() {
+		Registry.g.setFont(f);
+		this.width = Registry.g.getFontMetrics(f).stringWidth(text);
+		this.height = Registry.g.getFontMetrics(f).getHeight();
 		
-		g.setColor(fgColor);
-		g.drawRect((int)(xScalar*x),(int)(yScalar*y)+6,(int)(width)+6, (int)(height));
+		Registry.g.setColor(fgColor);
+		Registry.g.drawRect((int)(xScalar*x),(int)(yScalar*y)+6,(int)(width)+6, (int)(height));
 		
-		g.setColor(bgColor);
-		g.fillRect((int)(xScalar*x),(int)(yScalar*y)+6,(int)(width)+6,(int)(height));
+		Registry.g.setColor(bgColor);
+		Registry.g.fillRect((int)(xScalar*x),(int)(yScalar*y)+6,(int)(width)+6,(int)(height));
 		
-		g.setColor(fgColor);
-		g.drawString(text,(int)(xScalar*x)+3, (int)(yScalar*(y+height)));
+		Registry.g.setColor(fgColor);
+		Registry.g.drawString(text,(int)(xScalar*x)+3, (int)(yScalar*(y+height)));
 	}
 
 	@Override public void onClick() {}
+
 	@Override public void onHover() {}
+
 
 }
