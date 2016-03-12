@@ -7,13 +7,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import main.Main;
 import main.Registry;
 
 public class GraphicsImage extends GraphicsObject{
 	public Image src;
 	
-	public GraphicsImage(Image iSrc,int iX, int iY, int iWidth, int iHeight){
-		super(iX,iY,iWidth,iHeight);
+	public GraphicsImage(Image iSrc,int iX, int iY, int iWidth, int iHeight, Main.menuItem parentMenu){
+		super(iX,iY,iWidth,iHeight, parentMenu);
 		src = iSrc;
 	}
 	
