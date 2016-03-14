@@ -9,8 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-import javax.swing.*;
-
 import graphics.*;
 import main.Player.traits;
 import windows.*;
@@ -18,7 +16,7 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,START,SHOP,ADVENTURE,INVENTORY};
+	public static enum menuItem{NONE,START, DEFAULT, SHOP,ADVENTURE,INVENTORY};
 	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
@@ -30,7 +28,7 @@ public class Main extends ConstructorClass {
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
-	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550);
+	MainWindow mainWindow;
 	DefaultMenu mainMenu;
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
@@ -38,27 +36,26 @@ public class Main extends ConstructorClass {
 	StartMenuWindow startMenuWindow;
 
 	public void doInitialization(int width, int height) {	
+		System.out.println("Doing initialization");
+		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
+		Registry.registerArmor();
+		Registry.registerMonsters();
+		Registry.registerWeapons();
+		Registry.registerImageResources();	
+		
+		this.setSize(defaultWidth,defaultHeight);			
+		
+		mainMenu = new DefaultMenu();
+		mainWindow = new MainWindow();
+		shopMenu = new ShopWindow();
+		fightLoopMenu = new FightLoopWindow();
+		inventoryMenu = new InventoryWindow();
+		startMenuWindow = new StartMenuWindow();
 	}
 
 	// All drawing is done here //
 	synchronized public void drawFrame(Graphics g, int width, int height) {
 		Registry.g = g;
-		if(isFirstFrame){
-			isFirstFrame = false;
-			Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
-			Registry.registerArmor();
-			Registry.registerMonsters();
-			Registry.registerWeapons();
-			Registry.registerImageResources();	
-			
-			this.setSize(defaultWidth,defaultHeight);			
-			
-			mainMenu = new DefaultMenu();
-			shopMenu = new ShopWindow();
-			fightLoopMenu = new FightLoopWindow();
-			inventoryMenu = new InventoryWindow();
-			startMenuWindow = new StartMenuWindow();
-		}
 		
 		Registry.g.setColor(Color.lightGray);
 		GraphicsObject.setDimens(getSize().width, getSize().height);
@@ -66,7 +63,7 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
-			//mainMap.drawObject();
+			mainWindow.draw();
 			mainMenu.draw();
 			break;
 		case START:
@@ -108,66 +105,6 @@ public class Main extends ConstructorClass {
 	public void keyPressed(KeyEvent evt) {}
 	public void keyReleased(KeyEvent evt){}
 }
-
-/*
- * 	public static void town(String action) {
-		if (action.equalsIgnoreCase("Town")) {
-			System.out.println("What would you like to do?");
-			action = scan.nextLine().toLowerCase();
-			
-			switch(action){
-				case "sell": sell(); break;
-				case "buy": buy(); break;
-				case "sleep": break; // Restore life 
-				case "bank": break; // Tells how much gold they have, maybe offer investments
-				case "train": train(); // Increase skills for gold
-				case "help": break;  // Print list of commands;
-				case "equip": //Equips item out of inventory
-			}
-
-		}
-	}
-	public static void fight(Player a){
-		Monster m = Monster.pickMonster(a);
-		
-		//Random PlayerDamage = new Random();
-		//Random MonsterDamage = new Random();		
-		
-		// fight!!!!!
-		while (m.health > 0 && a.hp > 0) {
-			// Calculate attack of Monster and Player, and deduct HP from both
-		}
-
-		if (m.health <= 0) {
-			// You win:
-			// Give gold and XP
-			
-		} else if (a.hp <= 0) {
-			// You lose the game
-		}
-		
-	}
-	private static void sell(){
-		//sell stuff from inventory
-	}
-	private static void train() {
-		// improves skills
-	}
-
-	private static void buy() {
-		String type = scan.nextLine();
-		if (type.equalsIgnoreCase("Weapons")) {
-			// buy weapons
-			// check if have enough gold
-			// add to inventory
-		} else if (type.equalsIgnoreCase("Armor")) {
-			// buy armor
-			// check if have enough gold
-			// add to inventory
-		}
-	}
-}
- */
 
 
 
