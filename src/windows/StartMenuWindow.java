@@ -8,7 +8,7 @@ package windows;
  import main.Main.menuItem;
  
  public class StartMenuWindow extends WindowItem {
-	 menuItem thisMenu = menuItem.START;
+	 private static menuItem thisMenu = menuItem.START;
  	GraphicsImage title = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),100,0,400,100, thisMenu);
  	
  	// GraphicsImage(Image source, Int X, Int Y, Int Width, Int Height);

@@ -6,7 +6,7 @@ import graphics.GraphicsImage;
 import main.Registry;
 
 public class MainWindow extends WindowItem {
-	private menuItem thisMenu = menuItem.NONE;
+	private static  menuItem thisMenu = menuItem.NONE;
 	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550, thisMenu);
 	GraphicsImage mapIcon = new GraphicsImage(Registry.loadImage("res/MapIcon.png"),390,380,32,32, thisMenu);
 	GraphicsImage mapIcon2 = new GraphicsImage(Registry.loadImage("res/MapIcon.png"),280,350,32,32, thisMenu);
