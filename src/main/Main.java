@@ -18,7 +18,7 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY};
+	public static enum menuItem{NONE,SHOP,ADVENTURE,INVENTORY,START,DEFAULT};
 	public static menuItem currMenu = menuItem.NONE;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
@@ -30,33 +30,32 @@ public class Main extends ConstructorClass {
 	int defaultWidth = 600;
 	int defaultHeight = 600;
 
-	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550);
+	GraphicsImage mainMap = new GraphicsImage(Registry.loadImage("res/MainMap.png"),25,50,550,550, menuItem.NONE);
+	StartMenuWindow startMenu;
 	DefaultMenu mainMenu;
 	ShopWindow shopMenu;
 	FightLoopWindow fightLoopMenu;
 	InventoryWindow inventoryMenu;
 
 	public void doInitialization(int width, int height) {	
+		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
+		Registry.registerArmor();
+		Registry.registerMonsters();
+		Registry.registerWeapons();
+		Registry.registerImageResources();	
+		
+		this.setSize(defaultWidth,defaultHeight);			
+		
+		startMenu = new StartMenuWindow();
+		mainMenu = new DefaultMenu();
+		shopMenu = new ShopWindow();
+		fightLoopMenu = new FightLoopWindow();
+		inventoryMenu = new InventoryWindow();
 	}
 
 	// All drawing is done here //
 	synchronized public void drawFrame(Graphics g, int width, int height) {
 		Registry.g = g;
-		if(isFirstFrame){
-			isFirstFrame = false;
-			Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
-			Registry.registerArmor();
-			Registry.registerMonsters();
-			Registry.registerWeapons();
-			Registry.registerImageResources();	
-			
-			this.setSize(defaultWidth,defaultHeight);			
-			
-			mainMenu = new DefaultMenu();
-			shopMenu = new ShopWindow();
-			fightLoopMenu = new FightLoopWindow();
-			inventoryMenu = new InventoryWindow();
-		}
 		
 		Registry.g.setColor(Color.lightGray);
 		GraphicsObject.setDimens(getSize().width, getSize().height);
@@ -64,7 +63,10 @@ public class Main extends ConstructorClass {
 		
 		switch(currMenu){
 		case NONE:
-			//mainMap.drawObject();
+			mainMap.drawObject();
+			break;
+		case START:
+			startMenu.draw();
 			break;
 		case SHOP: 
 			if(itemBought){

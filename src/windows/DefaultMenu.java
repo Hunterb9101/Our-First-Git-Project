@@ -9,7 +9,8 @@ import main.Main;
 import main.Registry;
 
 public class DefaultMenu extends WindowItem {
-	GraphicsImage shop = new GraphicsImage(Registry.imgRes.get("ShopMenu"),0,0,200,50){
+	menuItem thisMenu = menuItem.DEFAULT;
+	GraphicsImage shop = new GraphicsImage(Registry.imgRes.get("ShopMenu"),0,0,200,50, thisMenu){
 		@Override 
 		public void onClick(){
 			Main.currMenu = Main.menuItem.SHOP;
@@ -18,7 +19,7 @@ public class DefaultMenu extends WindowItem {
 		@Override public void onHover(){}
 	};
 	
-	GraphicsImage adventure = new GraphicsImage(Registry.imgRes.get("FightLoopMenu"),200,0,200,50){
+	GraphicsImage adventure = new GraphicsImage(Registry.imgRes.get("FightLoopMenu"),200,0,200,50, thisMenu){
 		@Override
 		public void onClick(){
 			Main.currMenu = Main.menuItem.ADVENTURE;
@@ -27,7 +28,7 @@ public class DefaultMenu extends WindowItem {
 		@Override public void onHover(){}
 	};
 	
-	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50){
+	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),400,0,200,50, thisMenu){
 		@Override
 		public void onClick(){
 			Main.currMenu = Main.menuItem.INVENTORY;
@@ -38,9 +39,9 @@ public class DefaultMenu extends WindowItem {
 	
 	
 	
-	GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55);
-	GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2);
-	GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2);
+	GraphicsPrimitives bg = new GraphicsPrimitives(Color.BLACK,0,0,600,55, thisMenu);
+	GraphicsPrimitives bgLine1 = new GraphicsPrimitives(new Color(124,29,29),0,52,600,2, thisMenu);
+	GraphicsPrimitives bgLine2 = new GraphicsPrimitives(new Color(124,29,29),0, 55, 600, 2, thisMenu);
 	
 	@Override
 	public void draw() {

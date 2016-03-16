@@ -26,7 +26,7 @@ public class GraphicsGrid extends GraphicsObject {
 		// x start, y start, number of rows in grid, number of columns in grid,
 		// what menu it is in for hover purposes
 		super(iX, iY, (rows * itemWidth) + ((rows - 1) * xPadding),
-				(columns * itemHeight) + ((columns - 1) * yPadding));
+				(columns * itemHeight) + ((columns - 1) * yPadding), parentMenu);
 		this.parentMenu = parentMenu;
 		x = iX;
 		y = iY;

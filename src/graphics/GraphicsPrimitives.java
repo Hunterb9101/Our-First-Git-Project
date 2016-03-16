@@ -8,13 +8,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import main.Main;
 import main.Registry;
 
 public class GraphicsPrimitives extends GraphicsObject{	
 	Color c = Color.BLACK;
 	
-	public GraphicsPrimitives(Color iC,int iX, int iY, int iWidth, int iHeight){
-		super(iX,iY,iWidth,iHeight);
+	public GraphicsPrimitives(Color iC,int iX, int iY, int iWidth, int iHeight, Main.menuItem parentMenu){
+		super(iX,iY,iWidth,iHeight, parentMenu);
 		c = iC;
 	}
 	

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import main.Main;
+
 public abstract class GraphicsObject{
 	public static ArrayList<GraphicsObject> allObjects = new ArrayList<GraphicsObject>();
 	
@@ -24,14 +26,15 @@ public abstract class GraphicsObject{
 	public int y = 0;
 	public int width = 0;
 	public int height = 0;
-	
+	public Main.menuItem parentMenu;
 	public boolean freeMotion = true; //Determines whether the object is scalable
 	
-	public GraphicsObject(int iX, int iY, int iWidth, int iHeight){
+	public GraphicsObject(int iX, int iY, int iWidth, int iHeight, Main.menuItem iParentMenu){
 		x = iX;
 		y = iY;
 		width = iWidth;
 		height = iHeight;
+		parentMenu = iParentMenu;
 		allObjects.add(this);
 		
 		System.out.println("SYSTEM: OBJECTS INITIALIZED: " + allObjects.size());
@@ -60,7 +63,7 @@ public abstract class GraphicsObject{
 		GraphicsObject obj;
 		for(int i = 0; i<allObjects.size(); i++){
 			obj = allObjects.get(i);
-			if((x > obj.x && x < obj.width+obj.x) && (y > obj.y && y < obj.y+obj.height)){
+			if(obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.DEFAULT)){
 				obj.onClick();
 			}
 		}
@@ -71,7 +74,10 @@ public abstract class GraphicsObject{
 		for(int i = 0; i < allObjects.size(); i++){
 			obj = allObjects.get(i);
 			if((x > obj.x*xScalar && x < (obj.width+obj.x)*xScalar) && (y > obj.y*yScalar && y < (obj.y+obj.height)*yScalar)){
-				obj.onHover();
+				if(obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.DEFAULT)){
+					obj.onHover();
+				}
+				
 			}
 		}
 	}
