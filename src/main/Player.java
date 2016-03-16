@@ -9,7 +9,7 @@ import main.Weapon;
 public class Player {
 	public ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	public int lvl = 1; // Player's Current Level
-	public int xp = 0; // The stuff that makes up the level, certain amount of
+	public int totalXp = 0; // The stuff that makes up the level, certain amount of
 						// XP increases level
 	public int gold = 0;
 
