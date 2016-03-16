@@ -11,6 +11,7 @@ import main.Main;
 
 public abstract class WindowItem extends Main{
 	public abstract void draw();
+	
 	public static Image loadImage(String path){
 		Image img = null;
 		try {

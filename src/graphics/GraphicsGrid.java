@@ -2,9 +2,8 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Image;
-
-import main.InventoryItem;
 import main.Armor;
+import main.InventoryItem;
 import main.Main;
 import main.Registry;
 import main.Weapon;

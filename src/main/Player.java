@@ -1,10 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import main.Armor;
-import windows.FightLoopWindow;
-import main.Weapon;
-
 
 public class Player {
 	public ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
@@ -13,9 +9,8 @@ public class Player {
 						// XP increases level
 	public int gold = 0;
 
-	public int hp = 10;
-	public int maxHp = 0; // !SHOULD NOT BE EDITED! //
-	public int attack =0;
+	public int hp = 0;
+	private int maxHp = 0; // !SHOULD NOT BE EDITED! //
 
 	public Armor equipedArmor;
 	public Weapon equipedWeapon;
@@ -63,33 +58,18 @@ public class Player {
 	}
 
 	public int calculateMaxHP() {
-		maxHp=(hp*lvl);
-		if(equipedArmor == null){
-			
-		}
-		else{
-		maxHp += equipedArmor.defense;
-		}
 		// Calculate the max hitpoints based off of armor, skills, etc. //
-		return maxHp;
+		return 0;
 	}
 
 	public void giveGold(int GoldGiven) {
 		// Will be used to give gold to the player (Will take into mind the
 		// skill sets //
-		gold += GoldGiven;
 	}
 
 	public int getAttackDamage() {
-		attack = lvl * 5;
-		if(equipedWeapon == null){
-			
-		}
-		else{
-			attack += equipedWeapon.damage;
-		}
 		// This formula will be used to calculate the amount of damage will be
 		// done to a target //
-		return attack;
+		return 0;
 	}
 }

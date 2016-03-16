@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Weapon extends InventoryItem{
 	public static ArrayList<Weapon> allWeapons = new ArrayList<Weapon>();
 	public String name;
-	public int damage;
+	int damage;
 	int cost;
 	int attackSpeed;
 	public static Image src = Registry.loadImage("res/Flag2.png");

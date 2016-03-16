@@ -2,9 +2,8 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Image;
-
-import main.InventoryItem;
 import main.Armor;
+import main.InventoryItem;
 import main.Main;
 import main.Registry;
 import main.Weapon;
@@ -17,14 +16,13 @@ public class GraphicsGridEntry extends GraphicsObject {
 	private Weapon weapon = null;
 	private HoverBox descrip;
 	private GraphicsGrid parent;
-
 	public GraphicsGridEntry(Image iSrc, int iX, int iY, String iText, GraphicsGrid parent) {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		super(iX, iY, parent.itemWidth, parent.itemHeight, parent.parentMenu);
 		this.parent = parent;
 		src = iSrc;
 		text = iText;
-		descrip = new HoverBox(iX, iY, text, parent.parentMenu);
+		descrip = new HoverBox(iX, iY, text, this);
 	}
 	public GraphicsGridEntry(int iX, int iY, InventoryItem i, GraphicsGrid parent) {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
@@ -39,7 +37,7 @@ public class GraphicsGridEntry extends GraphicsObject {
 		this.i = i;
 		src = i.src;
 		text = i.parseText();
-		descrip = new HoverBox(iX, iY, text, parent.parentMenu);
+		descrip = new HoverBox(iX, iY, text, this);
 	}
 
 	public void drawObject() {

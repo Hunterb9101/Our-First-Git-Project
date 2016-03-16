@@ -5,11 +5,11 @@ import java.util.Random;
 
 public class Monster {
 	static ArrayList<Monster> AllMonsters = new ArrayList<Monster>(10);
-	public String name;
+	String name;
 	int xp;
-	public int gold;
-	public int damage;
-	public 	int health;
+	int gold;
+	int damage;
+	int health;
 	int lvl;
 	int attackSpeed = 1;
 	private Helper monsterHelper;

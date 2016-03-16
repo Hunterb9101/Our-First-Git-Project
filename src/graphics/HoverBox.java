@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import main.Main;
 import main.Registry;
 
 public class HoverBox extends GraphicsObject{
@@ -19,8 +18,8 @@ public class HoverBox extends GraphicsObject{
 	Color fgColor = new Color(255,255,255);
 	Font f = new Font("SanSerif", Font.PLAIN, 18);
 	
-	public HoverBox(int iX, int iY, String iText, Main.menuItem parentMenu){
-		super(iX,iY,0,0, parentMenu);
+	public HoverBox(int iX, int iY, String iText, GraphicsGridEntry parentEntry){
+		super(iX,iY,0,0, parentEntry.parentMenu);
 		text = iText;
 		x = iX;
 		y = iY;
