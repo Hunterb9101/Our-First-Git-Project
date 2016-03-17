@@ -12,12 +12,12 @@ import main.Main.menuItem;
 
 public class InventoryWindow extends WindowItem {
 	private static menuItem thisMenu = menuItem.INVENTORY;
-	public static GraphicsGrid grid = new GraphicsGrid(50, 105, 5, 5, thisMenu);
-	//GraphicsGridEntry flag = new GraphicsGridEntry(Registry.imgRes.get("Flag"), 400, 100, "Test", grid);//test inventory
-	//GraphicsGridEntry flag2 = new GraphicsGridEntry(Registry.imgRes.get("Flag2"), 455, 100, "Better Flag E!", grid);
+	public static GraphicsGrid grid = new GraphicsGrid(120, 105, 5, 5, 90, thisMenu);
+	GraphicsGrid equiped = new GraphicsGrid(30, 145, 1, 6, 60, thisMenu);
 	
 	@Override
 	public void draw() {
+		equiped.drawObject();
 		grid.drawObject();
 		//flag.drawObject();
 		//flag2.drawObject();

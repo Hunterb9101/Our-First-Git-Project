@@ -47,7 +47,8 @@ public class GraphicsGridEntry extends GraphicsObject {
 		Registry.g.drawImage(src, (int) (x * xScalar), (int) (y * yScalar), (int) (width * xScalar),
 				(int) (height * yScalar), null);
 		Registry.g.setColor(Color.black);
-		Registry.g.drawRect(x, y, width, height);// adds outline to the image
+		Registry.g.drawRect((int) (x * xScalar), (int) (y * yScalar), (int) (width * xScalar),
+				(int) (height * yScalar));// adds outline to the image
 	}
 
 	public void onClick() {
