@@ -8,13 +8,12 @@ import main.Armor;
 import main.Main;
 import main.Registry;
 import main.Weapon;
+import windows.InventoryWindow;
 
 public class GraphicsGridEntry extends GraphicsObject {
 	public Image src;
 	public String text;
 	public InventoryItem i;
-	private Armor armor = null;
-	private Weapon weapon = null;
 	private HoverBox descrip;
 	private GraphicsGrid parent;
 
@@ -30,12 +29,6 @@ public class GraphicsGridEntry extends GraphicsObject {
 		// SHOULD NEVER BE CALLED EXCEPT BY GRAPHICS GRID
 		super(iX, iY, parent.itemWidth, parent.itemHeight, parent.parentMenu);
 		this.parent = parent;
-		if(i.isWeapon()){
-			weapon = i.getWeapon();
-		}
-		else if(i.isArmor()){
-			armor = i.getArmor();
-		}
 		this.i = i;
 		src = i.src;
 		text = i.parseText();
@@ -52,16 +45,34 @@ public class GraphicsGridEntry extends GraphicsObject {
 	}
 
 	public void onClick() {
-		// equip
-		if (parent.parentMenu.equals(Main.currMenu)){//checks that we are in correct menu before doing on click
-			System.out.println("Equiping " + i.name);
-			if (weapon != null) {
-				Main.me.equipedWeapon = weapon;
+		switch(parent.behavior){
+		case BUY:
+			break;
+		case EQUIP:
+			if (parent.parentMenu.equals(Main.currMenu)){//checks that we are in correct menu before doing on click
+				if(i.isWeapon()){
+					Main.me.equipedWeapon = i.getWeapon();
+					InventoryWindow.equiped.addEntry(i);
+				}
+				else if(i.isArmor()){
+					Main.me.equipedArmor = i.getArmor();
+					InventoryWindow.equiped.addEntry(i);
+				}
 			}
-			if (armor != null) {
-				Main.me.equipedArmor = armor;
-			}
+			break;
+		case NONE:
+			break;
+		case SELL:
+			break;
+		case UNEQUIP:
+			parent.removeEntry(i);
+			break;
+		default:
+			break;
+		
 		}
+		// equip
+		
 	}
 
 	public void onHover() {

@@ -12,14 +12,16 @@ import main.Main.menuItem;
 
 public class InventoryWindow extends WindowItem {
 	private static menuItem thisMenu = menuItem.INVENTORY;
-	public static GraphicsGrid grid = new GraphicsGrid(120, 105, 5, 5, 90, thisMenu);
-	GraphicsGrid equiped = new GraphicsGrid(30, 145, 1, 6, 60, thisMenu);
-	
+	public static GraphicsGrid grid = new GraphicsGrid(120, 105, 5, 5, 90, GraphicsGrid.onClickBehavior.EQUIP,
+			thisMenu);
+	public static GraphicsGrid equiped = new GraphicsGrid(30, 145, 1, 6, 60, GraphicsGrid.onClickBehavior.UNEQUIP,
+			thisMenu);
+
 	@Override
 	public void draw() {
 		equiped.drawObject();
 		grid.drawObject();
-		//flag.drawObject();
-		//flag2.drawObject();
+		// flag.drawObject();
+		// flag2.drawObject();
 	}
 }
