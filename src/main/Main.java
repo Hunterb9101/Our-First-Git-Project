@@ -16,7 +16,7 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,START, DEFAULT, SHOP,ADVENTURE,INVENTORY};
+	public static enum menuItem{NONE,START, DEFAULT, SHOP,ADVENTURE,INVENTORY, DELETE};
 	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
@@ -74,6 +74,7 @@ public class Main extends ConstructorClass {
 				for(int i = 0; i < 10; i++){
 					InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
 				}
+				InventoryWindow.grid.removeEntry(Weapon.allWeapons.get(2));
 			}
 			itemBought = false;
 			shopMenu.draw();
