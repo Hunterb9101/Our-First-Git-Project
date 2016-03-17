@@ -26,6 +26,7 @@ public abstract class GraphicsObject {
 	public int y = 0;
 	public int width = 0;
 	public int height = 0;
+	
 	public Main.menuItem parentMenu;
 	public boolean freeMotion = true; // Determines whether the object is
 										// scalable
@@ -66,7 +67,7 @@ public abstract class GraphicsObject {
 			obj = allObjects.get(i);
 			if ((x > obj.x * xScalar && x < (obj.width + obj.x) * xScalar)
 					&& (y > obj.y * yScalar && y < (obj.y + obj.height) * yScalar)) {
-				if (obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.DEFAULT)) {
+				if (obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.NONE)) {
 					obj.onClick();
 				}
 			}
@@ -79,7 +80,7 @@ public abstract class GraphicsObject {
 			obj = allObjects.get(i);
 			if ((x > obj.x * xScalar && x < (obj.width + obj.x) * xScalar)
 					&& (y > obj.y * yScalar && y < (obj.y + obj.height) * yScalar)) {
-				if (obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.DEFAULT)) {
+				if (obj.parentMenu.equals(Main.currMenu) || obj.parentMenu.equals(Main.menuItem.NONE)) {
 					obj.onHover();
 				}
 			}

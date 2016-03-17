@@ -16,14 +16,12 @@ import windows.*;
 //need for music and sound
 
 public class Main extends ConstructorClass {
-	public static enum menuItem{NONE,START, DEFAULT, SHOP,ADVENTURE,INVENTORY, DELETE};
+	public static enum menuItem{NONE, MAIN, START, SHOP,ADVENTURE,INVENTORY, DELETE};
 	public static menuItem currMenu = menuItem.START;
 	public static Player me = new Player(traits.NONE);
 	private static boolean isFirstFrame = true;
 	
 	public Random rand = new Random();
-	
-	boolean itemBought = true;//will be deleted once shop is made
 	
 	int defaultWidth = 600;
 	int defaultHeight = 600;
@@ -51,6 +49,11 @@ public class Main extends ConstructorClass {
 		fightLoopMenu = new FightLoopWindow();
 		inventoryMenu = new InventoryWindow();
 		startMenuWindow = new StartMenuWindow();
+		
+		for(int i = 0; i < 10; i++){
+			InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
+		}
+		InventoryWindow.grid.removeEntry(Weapon.allWeapons.get(2));
 	}
 
 	// All drawing is done here //
@@ -62,21 +65,16 @@ public class Main extends ConstructorClass {
 		Registry.g.fillRect(0, 0, width, height);
 		
 		switch(currMenu){
-		case NONE:
-			mainWindow.draw();
+		case NONE: //This is where all menus that go across ALL pages should go
 			mainMenu.draw();
 			break;
-		case START:
+		case MAIN: // Campaign Window
+			mainWindow.draw();
+			break;
+		case START: // Start Menu
 			startMenuWindow.draw();
 			break;
-		case SHOP: 
-			if(itemBought){
-				for(int i = 0; i < 10; i++){
-					InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
-				}
-				InventoryWindow.grid.removeEntry(Weapon.allWeapons.get(2));
-			}
-			itemBought = false;
+		case SHOP: // Shop Menu
 			shopMenu.draw();
 			mainMenu.draw();
 			break;
@@ -88,6 +86,9 @@ public class Main extends ConstructorClass {
 		case INVENTORY: 
 			inventoryMenu.draw();
 			mainMenu.draw();
+			break;
+			
+		default:
 			break;
 		}
 		
