@@ -14,7 +14,7 @@ public abstract class InventoryItem {
 	public abstract String parseText();
 	public boolean isWeapon(){
 		for(int i = 0; i < Weapon.allWeapons.size(); i++){
-			if(this.name.equals(Weapon.allWeapons.get(i)) && this.cost == Weapon.allWeapons.get(i).cost){
+			if(name.equals(Weapon.allWeapons.get(i).name) && cost == Weapon.allWeapons.get(i).cost){
 				return true;
 			}
 		}
@@ -22,7 +22,7 @@ public abstract class InventoryItem {
 	}
 	public boolean isArmor(){
 		for(int i = 0; i < Armor.allArmor.size(); i++){
-			if(this.name.equals(Armor.allArmor.get(i)) && this.cost == Armor.allArmor.get(i).cost){
+			if(name.equals(Armor.allArmor.get(i).name) && cost == Armor.allArmor.get(i).cost){
 				return true;
 			}
 		}

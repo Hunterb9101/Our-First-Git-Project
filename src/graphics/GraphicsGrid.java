@@ -11,30 +11,34 @@ import main.Weapon;
 
 public class GraphicsGrid extends GraphicsObject {
 	public GraphicsGridEntry[] items = new GraphicsGridEntry[25];
-	public int rows = 5;
-	public int columns = 5;
+	public int rows;
+	public int columns;
 	public static int xPadding = 3;
 	public static int yPadding = 3;
-
+	public static enum onClickBehavior {NONE, EQUIP, UNEQUIP, BUY, SELL};
+	public onClickBehavior behavior = onClickBehavior.NONE;
 	int x;
 	int y;
 
-	static int itemWidth = 90;
-	static int itemHeight = 90;
+	int itemWidth = 90;
+	int itemHeight = 90;
 	public Main.menuItem parentMenu;
 
-	public GraphicsGrid(int iX, int iY, int rows, int columns, Main.menuItem parentMenu) {
+	public GraphicsGrid(int iX, int iY, int rows, int columns, int itemSize, onClickBehavior behavior, Main.menuItem parentMenu) {
 		// x start, y start, number of rows in grid, number of columns in grid,
 		// what menu it is in for hover purposes
-		super(iX, iY, (rows * itemWidth) + ((rows - 1) * xPadding),
-				(columns * itemHeight) + ((columns - 1) * yPadding), parentMenu);
+		super(iX, iY, (rows * itemSize) + ((rows - 1) * xPadding), (columns * itemSize) + ((columns - 1) * yPadding),
+				parentMenu);
+		this.behavior = behavior;
+		itemWidth = itemSize;
+		itemHeight = itemSize;
 		this.parentMenu = parentMenu;
 		x = iX;
 		y = iY;
 		this.rows = rows;
 		this.columns = columns;
 	}
-
+	
 	@Override
 	public void drawObject() {
 		for (int r = 0; r < rows; r++) {
@@ -43,14 +47,28 @@ public class GraphicsGrid extends GraphicsObject {
 					items[c * rows + r].drawObject();// draws the items
 				} catch (NullPointerException e) {
 					Registry.g.setColor(Color.BLACK);
-					Registry.g.fillRect(x + r * itemWidth + xPadding * r, y + c * itemHeight + yPadding * c, itemWidth,
-							itemHeight);// makes black squares where there is no
-										// items
+					Registry.g.fillRect((int) ((x + r * itemWidth + xPadding * r) * xScalar),
+							(int) ((y + c * itemHeight + yPadding * c) * yScalar), (int) (itemWidth * xScalar),
+							(int) (itemHeight * yScalar));// makes black squares
+															// where there is no items
 				}
 			}
 		}
 	}
-
+	public void removeEntry(InventoryItem i){
+		for (int j = 0; j < items.length; j++) {
+			try{
+				if(items[j].i == i){
+					System.out.println(i.name + " successfully removed");
+					items[j].parentMenu = Main.menuItem.DELETE;
+					items[j] = null;
+				}
+			}
+			catch(NullPointerException e){
+				//do nothing because no item is here
+			}
+		}
+	}
 	public void addEntry(InventoryItem i) {
 		System.out.println("Item added " + i.name);
 		boolean needsEntry = true;
@@ -90,7 +108,6 @@ public class GraphicsGrid extends GraphicsObject {
 			}
 		}
 	}
-
 	@Override
 	public void onClick() {
 		// do nothing because it is the grid
