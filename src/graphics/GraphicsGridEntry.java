@@ -47,6 +47,13 @@ public class GraphicsGridEntry extends GraphicsObject {
 	public void onClick() {
 		switch(parent.behavior){
 		case BUY:
+			if(Main.me.gold >= i.cost){
+				Main.me.gold -= i.cost;
+				InventoryWindow.grid.addEntry(i);
+			}else{
+				Registry.h.printBox("Not enough gold");
+			}
+			
 			break;
 		case EQUIP:
 			int index = 5;

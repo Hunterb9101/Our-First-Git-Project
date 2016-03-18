@@ -59,7 +59,20 @@ public class GraphicsGrid extends GraphicsObject {
 			}
 		}
 	}
-
+	public void showChildren(){
+		for(int i = 0; i < items.length; i++){
+			if(items[i] != null){
+				items[i].parentMenu = parentMenu;
+			}
+		}
+	}
+	public void hideChildren(){
+		for(int i = 0; i < items.length; i++){
+			if(items[i] != null){
+				items[i].parentMenu = Main.menuItem.DELETE;
+			}
+		}
+	}
 	public void removeEntry(InventoryItem i) {
 		for (int j = 0; j < items.length; j++) {
 			try {
