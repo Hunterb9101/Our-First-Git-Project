@@ -7,6 +7,8 @@ import main.Weapon;
 
 public class Player {
 	public ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+	
+	public int zoneLvl = 1;
 	public int lvl = 1; // Player's Current Level
 	public int totalXp = 0; // The stuff that makes up the level, certain amount
 							// of

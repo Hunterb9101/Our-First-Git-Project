@@ -9,6 +9,8 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import region.RegionTest;
+
 public class Registry {
 	public static HashMap<String,Image> imgRes = new HashMap<String,Image>();
 	public static Graphics g;
@@ -105,5 +107,9 @@ public class Registry {
 		new Monster("Dragon", 16, 32, 28, 31, 10);
 		new Monster("Basalisk", 20, 33, 36, 24, 10);
 		new Monster("Monster Hoard", 18, 27, 35, 27, 10);
+	}
+	
+	public static void registerRegions(){
+		new RegionTest();
 	}
 }

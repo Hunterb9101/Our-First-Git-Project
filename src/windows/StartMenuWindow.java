@@ -16,21 +16,21 @@ package windows;
  	GraphicsImage loadGame = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),200,175,200,50, thisMenu){
  			@Override
  			public void onClick(){
- 				Main.currMenu = menuItem.NONE; //Use this syntax to change the window
+ 				Main.currMenu = menuItem.MAIN; //Use this syntax to change the window
  			}
  	};
  
  	GraphicsImage newGame = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),200,250,200,50, thisMenu){
  			@Override
  			public void onClick(){
- 				Main.currMenu = menuItem.NONE; //Use this syntax to change the window
+ 				Main.currMenu = menuItem.MAIN; //Use this syntax to change the window
  			}
  	};
  
  	GraphicsImage credits = new GraphicsImage(Registry.imgRes.get("InventoryMenu"),200,325,200,50, thisMenu){ 
  		@Override
  		public void onClick(){
- 			Main.currMenu = menuItem.NONE; //Use this syntax to change the window
+ 			Main.currMenu = menuItem.MAIN; //Use this syntax to change the window
  		}
  	};
  	
