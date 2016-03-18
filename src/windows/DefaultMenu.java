@@ -9,7 +9,7 @@ import main.Main;
 import main.Registry;
 
 public class DefaultMenu extends WindowItem {
-	private static menuItem thisMenu = menuItem.DEFAULT;
+	private static menuItem thisMenu = menuItem.NONE;
 	GraphicsImage shop = new GraphicsImage(Registry.imgRes.get("ShopMenu"), 0, 0, 200, 50, thisMenu) {
 		@Override
 		public void onClick() {
