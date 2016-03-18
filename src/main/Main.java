@@ -75,6 +75,9 @@ public class Main extends ConstructorClass {
 					InventoryWindow.grid.addEntry(Weapon.allWeapons.get(i));
 				}
 				InventoryWindow.grid.removeEntry(Weapon.allWeapons.get(2));
+				for(int i = 0; i < 10; i++){
+					InventoryWindow.grid.addEntry(Armor.allArmor.get(i));
+				}
 			}
 			itemBought = false;
 			shopMenu.draw();
