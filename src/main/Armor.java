@@ -7,14 +7,20 @@ package main;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import windows.InventoryWindow;
+
 public class Armor extends InventoryItem{
 	public static ArrayList<Armor> allArmor = new ArrayList<Armor>();
 	public String name;
 	public int defense;
 	int cost;
-	public static Image src = Registry.imgRes.get("Flag");
-	public Armor(String name, int defense, int cost) {
+	public static Image src = Registry.loadImage("res/Flag2.png");
+	public static enum armorPiece {BOOTS, PANTS, CHEST, HEAD, GLOVES}
+	public armorPiece armorLocation;
+	
+	public Armor(String name, int defense, int cost, armorPiece armorLocation) {
 		super(name,src,cost);
+		this.armorLocation = armorLocation;
 		this.name = name;
 		this.defense = defense;
 		this.cost = cost;
