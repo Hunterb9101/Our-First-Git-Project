@@ -49,14 +49,38 @@ public class GraphicsGridEntry extends GraphicsObject {
 		case BUY:
 			break;
 		case EQUIP:
+			int index = 5;
 			if (parent.parentMenu.equals(Main.currMenu)){//checks that we are in correct menu before doing on click
 				if(i.isWeapon()){
 					Main.me.equipedWeapon = i.getWeapon();
-					InventoryWindow.equiped.addEntry(i);
+					InventoryWindow.equiped.addEntry(i, index);
 				}
 				else if(i.isArmor()){
-					Main.me.equipedArmor = i.getArmor();
-					InventoryWindow.equiped.addEntry(i);
+					switch(i.getArmor().armorLocation){
+					case BOOTS:
+						Main.me.equipedBoots = i.getArmor();
+						index = 4;
+						break;
+					case CHEST:
+						Main.me.equipedChestplate = i.getArmor();
+						index = 1;
+						break;
+					case GLOVES:
+						Main.me.equipedGloves = i.getArmor();
+						index = 2;
+						break;
+					case HEAD:
+						Main.me.equipedHelmet = i.getArmor();
+						index = 0;
+						break;
+					case PANTS:
+						Main.me.equipedLeggings = i.getArmor();
+						index = 3;
+						break;
+					default:
+						break;					
+					}
+					InventoryWindow.equiped.addEntry(i.getArmor(), index);
 				}
 			}
 			break;

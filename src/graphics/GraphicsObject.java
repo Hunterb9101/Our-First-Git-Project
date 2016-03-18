@@ -3,7 +3,6 @@ package graphics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-
 import main.Main;
 
 public abstract class GraphicsObject {

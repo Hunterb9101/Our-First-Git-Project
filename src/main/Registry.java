@@ -27,15 +27,26 @@ public class Registry {
 	}
 	
 	public static void registerArmor(){
-		new Armor("Leather", 7, 52);
-		new Armor("chain mail", 9, 77);
-		new Armor("steel plate", 15, 84);
-		new Armor("iron", 11, 67);
-		new Armor("Enchanted", 18, 134);
-		new Armor("Mythical", 27, 213); 
-		new Armor("Dragon", 23, 157);
+		makeArmorSet("Leather", 7, 52);
+		makeArmorSet("chain mail", 9, 77);
+		makeArmorSet("steel plate", 15, 84);
+		makeArmorSet("iron", 11, 67);
+		makeArmorSet("Enchanted", 18, 134);
+		makeArmorSet("Mythical", 27, 213); 
+		makeArmorSet("Dragon", 23, 157);
 	}
 	
+	private static void makeArmorSet(String name, int defence, int cost){
+		//defence based on helmet value, so that we can easily multiply, and keep whole numbers
+		//same for cost, based on helmet value for the same reasons
+		new Armor(name + " helmet", defence, cost, Armor.armorPiece.HEAD);//makes helmet
+		new Armor(name + " chestplate", (defence * 3), cost * 3, Armor.armorPiece.CHEST);//makes chestplate
+		new Armor(name + " gloves", (int) (defence / 2), (int) (cost/2), Armor.armorPiece.GLOVES);//makes the gloves
+		new Armor(name + " leggings", (defence * 2), (cost * 2), Armor.armorPiece.PANTS);//makes pants
+		new Armor(name + " boots", defence, cost, Armor.armorPiece.BOOTS);//makes boots
+		//multiplier values based off of Minecraft ratios of armor
+		
+	}
 	public static void registerImageResources(){
 		imgRes.put("ShopMenu", loadImage("res/Shop.png"));
 		imgRes.put("FightLoopMenu", loadImage("res/Adventure.png"));

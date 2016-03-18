@@ -30,7 +30,7 @@ public abstract class InventoryItem {
 	}
 	public Weapon getWeapon(){
 		for(int i = 0; i < Weapon.allWeapons.size(); i++){
-			if(this.name.equals(Weapon.allWeapons.get(i)) && this.cost == Weapon.allWeapons.get(i).cost){
+			if(this.name.equals(Weapon.allWeapons.get(i).name) && this.cost == Weapon.allWeapons.get(i).cost){
 				return Weapon.allWeapons.get(i);
 			}
 		}
@@ -38,7 +38,7 @@ public abstract class InventoryItem {
 	}
 	public Armor getArmor(){
 		for(int i = 0; i < Armor.allArmor.size(); i++){
-			if(this.name.equals(Armor.allArmor.get(i)) && this.cost == Armor.allArmor.get(i).cost){
+			if(this.name.equals(Armor.allArmor.get(i).name) && this.cost == Armor.allArmor.get(i).cost){
 				return Armor.allArmor.get(i);
 			}
 		}
