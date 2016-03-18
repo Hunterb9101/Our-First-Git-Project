@@ -36,6 +36,7 @@ public class Main extends ConstructorClass {
 	public void doInitialization(int width, int height) {	
 		System.out.println("Doing initialization");
 		Registry.initHelper(); //Initializes the Helper(), so Runtime is started.
+		Registry.registerRegions();
 		Registry.registerArmor();
 		Registry.registerMonsters();
 		Registry.registerWeapons();
@@ -70,6 +71,7 @@ public class Main extends ConstructorClass {
 			break;
 		case MAIN: // Campaign Window
 			mainWindow.draw();
+			mainMenu.draw();
 			break;
 		case START: // Start Menu
 			startMenuWindow.draw();
