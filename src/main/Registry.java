@@ -9,8 +9,6 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import region.RegionTest;
-
 public class Registry {
 	public static HashMap<String,Image> imgRes = new HashMap<String,Image>();
 	public static Graphics g;
@@ -50,6 +48,15 @@ public class Registry {
 		
 	}
 	public static void registerImageResources(){
+		imgRes.put("titleArt", loadImage("buttons/titleArt.png"));
+		imgRes.put("creditButton", loadImage("buttons/Credits.png"));
+		imgRes.put("exitButton", loadImage("buttons/Exit.png"));
+		imgRes.put("loadGameButton", loadImage("buttons/LoadGame.png"));
+		imgRes.put("newGameButton", loadImage("buttons/NewGame.png"));	
+		
+		imgRes.put("mainMap", loadImage("res/resMaps/MainMap.png"));
+		imgRes.put("mainMapMonochromatic", loadImage("res/resMaps/MainMapMonochromatic.png"));
+		
 		imgRes.put("ShopMenu", loadImage("res/Shop.png"));
 		imgRes.put("FightLoopMenu", loadImage("res/Adventure.png"));
 		imgRes.put("InventoryMenu", loadImage("res/Inventory.png"));
@@ -110,6 +117,5 @@ public class Registry {
 	}
 	
 	public static void registerRegions(){
-		new RegionTest();
 	}
 }

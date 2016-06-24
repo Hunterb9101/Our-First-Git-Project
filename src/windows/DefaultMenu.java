@@ -21,17 +21,6 @@ public class DefaultMenu extends WindowItem {
 		}
 	};
 
-	GraphicsImage adventure = new GraphicsImage(Registry.imgRes.get("FightLoopMenu"), 200, 0, 200, 50, thisMenu) {
-		@Override
-		public void onClick() {
-			Main.currMenu = Main.menuItem.ADVENTURE;
-		}
-
-		@Override
-		public void onHover() {
-		}
-	};
-
 	GraphicsImage inventory = new GraphicsImage(Registry.imgRes.get("InventoryMenu"), 400, 0, 200, 50, thisMenu) {
 		@Override
 		public void onClick() {
@@ -54,7 +43,6 @@ public class DefaultMenu extends WindowItem {
 		bgLine2.drawObject();
 		shop.drawObject();
 		inventory.drawObject();
-		adventure.drawObject();
 	}
 
 }

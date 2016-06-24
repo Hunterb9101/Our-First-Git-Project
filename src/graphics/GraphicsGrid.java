@@ -14,9 +14,7 @@ public class GraphicsGrid extends GraphicsObject {
 	public static int xPadding = 3;
 	public static int yPadding = 3;
 
-	public static enum onClickBehavior {
-		NONE, EQUIP, UNEQUIP, BUY, SELL
-	};
+	public static enum onClickBehavior {NONE, EQUIP, UNEQUIP, BUY, SELL};
 
 	public onClickBehavior behavior = onClickBehavior.NONE;
 	int x;
