@@ -7,7 +7,7 @@ import main.Player;
 import main.Registry;
 
 public class FightLoopWindow extends WindowItem {
-	private static menuItem thisMenu = menuItem.ADVENTURE;
+	private static menuItem thisMenu = menuItem.REGION;
 	public int money;
 	
 	public void draw() {

@@ -3,9 +3,8 @@ package windows;
 import java.awt.Graphics;
 
 import graphics.GraphicsImage;
+import main.Main;
 import main.Registry;
-import region.RegionAbstract;
-import region.RegionTest;
 
 public class MainWindow extends WindowItem {
 	protected menuItem thisMenu = menuItem.MAIN;
@@ -16,13 +15,13 @@ public class MainWindow extends WindowItem {
 	GraphicsImage mapIcon = new GraphicsImage(Registry.loadImage("res/resMaps/MapIcon.png"),390,380,32,32, thisMenu){
 		@Override
 		public void onClick(){
-			currZoneSelected = 0;
+			Main.currMenu = menuItem.REGION;
 		}
 	};
 	GraphicsImage mapIcon2 = new GraphicsImage(Registry.loadImage("res/resMaps/DisabledMapIcon.png"),280,350,32,32, thisMenu){
 		@Override
 		public void onClick(){
-			currZoneSelected = 1;
+			Main.currMenu = menuItem.REGION;
 		}
 	};
 	
@@ -33,19 +32,13 @@ public class MainWindow extends WindowItem {
 	
 	@Override
 	public void draw() {
-		try{
-			RegionAbstract.allRegions.get(currZoneSelected).drawRegion();
-		}
-		catch(IndexOutOfBoundsException e){
-			System.out.println("NOT DRAWING REGION @ " + currZoneSelected);
-			mainMap.drawObject();
-			mapIcon.drawObject();
-			mapIcon2.drawObject();
-			mapIcon3.drawObject();
-			mapIcon4.drawObject();
-			mapIcon5.drawObject();
-			mapIcon6.drawObject();	
-		}
+		mainMap.drawObject();
+		mapIcon.drawObject();
+		mapIcon2.drawObject();
+		mapIcon3.drawObject();
+		mapIcon4.drawObject();
+		mapIcon5.drawObject();
+		mapIcon6.drawObject();
 	}
 
 }

@@ -1,8 +1,6 @@
-/graphics/
-/main/
-/res/
-/windows/
 /region/
-/resRegion/
-/resWindows/
-/resMaps/
+/main/
+/graphics/
+/windows/
+/buttons/
+/res/
